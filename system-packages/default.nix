@@ -29,6 +29,7 @@ in
       glib
       gtk3
       gobject-introspection
+      tailscale
       #gtk3
       (pkgs.python3.withPackages my-python-packages)
       # gui apps

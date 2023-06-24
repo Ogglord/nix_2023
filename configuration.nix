@@ -33,8 +33,10 @@
   security.pam.services.swaylock = {
     text = "auth include login";
   };
+  # tailscale, of course
+  services.tailscale.enable = true;
   # required for secret-tool and 1password integration in wofi
-  services.gnome3.gnome-keyring = {
+  services.gnome.gnome-keyring = {
       enable = true;
   };
 
