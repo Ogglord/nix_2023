@@ -9,22 +9,22 @@
     [
       ./env
       ./hardware/desktop.nix
-      #./home
-      #      ./windowmanager
       ./system-packages
+      ./system-packages/fonts
       ./system-packages/greetd
-      #      ./neovim
     ];
 
   nixpkgs.config.allowUnfree = true;
 
   time.timeZone = "Europe/Stockholm";
 
-  # Use the lanzaboote and secureboot
+  # Use lanzaboote and secureboot
   boot.bootspec.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot = {
     loader.systemd-boot.enable = lib.mkForce false;
+    loader.systemd-boot.consoleMode = "max";
+    loader.systemd-boot.configurationLimit = 5;
     lanzaboote = {
       enable = true;
       pkiBundle = "/etc/secureboot";
@@ -54,7 +54,10 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-    font = "Lat2-Terminus16";
+    #font = "Lat2-Terminus16";
+    earlySetup = true;
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
+    packages = with pkgs; [ terminus_font ];
     keyMap = "sv-latin1";
     useXkbConfig = false; # use xkbOptions in tty.
   };
@@ -95,25 +98,7 @@
     extraGroups = [ "wheel" "audio" "realtime" "networkmanager" ]; # Enable ‘sudo’ for the user.    
   };
 
-  # Fonts
-  fonts = {
-    #enableDefaultFonts = true;
-    fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Hack" ]; })
-      roboto
-      ubuntu_font_family
-      noto-fonts-emoji
-    ];
 
-    fontconfig = {
-      defaultFonts = {
-        serif = [ "Roboto Slab" ];
-        sansSerif = [ "Ubuntu" ];
-        monospace = [ "Hack Nerd Font" ];
-        emoji = [ "Noto Color Emoji" ];
-      };
-    };
-  };
 
   # List services that you want to enable:
   programs.zsh.enable = true;
