@@ -1,4 +1,6 @@
 {
+  description = "Sway workspace modifier called sworkstyle (swayland_workstyle)";
+
   inputs = {
     cargo2nix.url = "github:cargo2nix/cargo2nix/release-0.11.0";
     # Use a github flake URL for real packages

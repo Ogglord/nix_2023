@@ -14,6 +14,8 @@
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+     # Local directories (for absolute paths you can omit 'path:')
+    sworkstyle.url = "path:flakes/sworkstyle";
     #home-manager = {
     #  url = "github:nix-community/home-manager";
     #  inputs.nixpkgs.follows = "unstable"; 	
@@ -27,7 +29,7 @@
     #  flake = false;
     #};
   };
-  outputs = { self, lanzaboote, nixpkgs, unstable, home-manager, nur, nil, ... }@inputs: 
+  outputs = { self, lanzaboote, nixpkgs, unstable, home-manager, nur, nil, sworkstyle, ... }@inputs: 
   let
     system = "x86_64-linux";
     
@@ -39,6 +41,7 @@
         {
           unstable = make-available-in-args inputs.unstable; 
           nil = inputs.nil;
+          sworkstyle = inputs.sworkstyle;          
           nur = make-available-in-args inputs.nur;
           inputs = inputs;
         };

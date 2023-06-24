@@ -1,6 +1,6 @@
-{ inputs, lib, config, pkgs, system, nixosConfig, ... }: 
+{ inputs, lib, config, pkgs, system, nixosConfig, sworkstyle, ... }: 
 let
- inherit (nixosConfig.system) stateVersion;
+ inherit (nixosConfig.system) stateVersion sworkstyle;
   colorscheme = import ./colors.nix;
 in
 {
@@ -67,6 +67,7 @@ in
     spotify
     swaylock
     swayidle
+    sworkstyle
     htop
     wl-clipboard
     wl-gammactl
