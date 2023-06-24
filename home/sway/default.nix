@@ -46,13 +46,12 @@ in
       keybindings =
         let
           mod = "Mod4"; # windows key
-          terminal = "alacritty";
           menu = "wofi --show run";
           #inherit (config.wayland.windowManager.sway.config) # doesnt work
           #  menu terminal;
         in
         {
-          "${mod}+Return" = "exec ${terminal}";
+          "${mod}+Return" = "exec ${term}";
           "${mod}+q" = "kill";
           "${mod}+d" = "exec ${menu}";
           #  	    "${modifier}+Shift+q" = "kill";
