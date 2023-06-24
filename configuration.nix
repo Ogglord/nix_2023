@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, unstable, ... }:
 {
   nix.settings.experimental-features = [
     "nix-command"
@@ -10,9 +10,10 @@
       ./env
       ./hardware/desktop.nix
       #./home
-#      ./windowmanager
+      #      ./windowmanager
       ./system-packages
-#      ./neovim
+      ./system-packages/greetd
+      #      ./neovim
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -21,6 +22,7 @@
 
   # Use the lanzaboote and secureboot
   boot.bootspec.enable = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot = {
     loader.systemd-boot.enable = lib.mkForce false;
     lanzaboote = {
@@ -37,7 +39,7 @@
   services.tailscale.enable = true;
   # required for secret-tool and 1password integration in wofi
   services.gnome.gnome-keyring = {
-      enable = true;
+    enable = true;
   };
 
   networking = {
@@ -50,17 +52,27 @@
   };
 
   # Select internationalisation properties.
-   i18n.defaultLocale = "en_US.UTF-8";
-   console = {
-     font = "Lat2-Terminus16";
-     keyMap = "sv-latin1";
-     useXkbConfig = false; # use xkbOptions in tty.
-   };
-  
+  i18n.defaultLocale = "en_US.UTF-8";
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "sv-latin1";
+    useXkbConfig = false; # use xkbOptions in tty.
+  };
+
   # Configure keymap in X11
   services.xserver.layout = "se";
   services.xserver.xkbOptions = "eurosign:e,caps:escape";
 
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal"; # Without this errors will spam on screen
+    # Without these bootlogs will spam on screen
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
+  };
 
   # Enable sound.
   #sound.enable = true;
@@ -75,15 +87,15 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-   users.defaultUserShell = pkgs.zsh;
-   users.users.ogge = {
-     isNormalUser = true;
-     home = "/home/ogge";
-     description = "Ogglord";
-     extraGroups = [ "wheel" "audio" "realtime" "networkmanager" ]; # Enable ‘sudo’ for the user.    
-   };
+  users.defaultUserShell = pkgs.zsh;
+  users.users.ogge = {
+    isNormalUser = true;
+    home = "/home/ogge";
+    description = "Ogglord";
+    extraGroups = [ "wheel" "audio" "realtime" "networkmanager" ]; # Enable ‘sudo’ for the user.    
+  };
 
-    # Fonts
+  # Fonts
   fonts = {
     #enableDefaultFonts = true;
     fonts = with pkgs; [
@@ -93,18 +105,19 @@
       noto-fonts-emoji
     ];
 
-	  fontconfig = {
-	    defaultFonts = {
-	      serif = [ "Roboto Slab" ];
-	      sansSerif = [ "Ubuntu" ];
-	      monospace = [ "Hack Nerd Font" ];
-	      emoji = [ "Noto Color Emoji" ];
-	    };
-	  };
+    fontconfig = {
+      defaultFonts = {
+        serif = [ "Roboto Slab" ];
+        sansSerif = [ "Ubuntu" ];
+        monospace = [ "Hack Nerd Font" ];
+        emoji = [ "Noto Color Emoji" ];
+      };
+    };
   };
 
   # List services that you want to enable:
   programs.zsh.enable = true;
+  programs.light.enable = true;
 
   # needed for gnupg
   services.pcscd.enable = true;
@@ -116,31 +129,51 @@
   programs.dconf.enable = true;
   xdg = {
     portal = {
- 	    enable = true;
-	    extraPortals =  with pkgs; [
-	      xdg-desktop-portal-wlr
-	      xdg-desktop-portal-gtk
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
       ];
     };
   };
 
   # needed for GUI apps to escalate to sudo
-	systemd = {
-	  user.services.polkit-gnome-authentication-agent-1 = {
-	    description = "polkit-gnome-authentication-agent-1";
-	    wantedBy = [ "graphical-session.target" ];
-	    wants = [ "graphical-session.target" ];
-	    after = [ "graphical-session.target" ];
-	    serviceConfig = {
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
         Type = "simple";
         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
-	    };
-	  };
-	};
+      };
+    };
+  };
 
-  system.stateVersion = "23.05"; 
+  security.sudo.extraRules = [
+    {
+      users = [ "ogge" ];
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/nixos-rebuild";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "/run/current-system/sw/bin/nix-collect-garbage";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "/run/current-system/sw/bin/reboot";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
+
+  system.stateVersion = "23.05";
 }
 

@@ -2,10 +2,13 @@
   description = "Ogglords Flake based NixOS configuration Juny 2023";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/nur";
+    # secure boot package
     lanzaboote.url = "github:nix-community/lanzaboote";
+    # NIx Language server
     nil = {
       url = "github:oxalica/nil";
       inputs.nixpkgs.follows = "unstable";
@@ -14,7 +17,9 @@
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-     # Local directories (for absolute paths you can omit 'path:')
+    flake-utils.url = "github:numtide/flake-utils";
+    # Local directories (for absolute paths you can omit 'path:')
+    # sway workplace renaming toolip 
     sworkstyle.url = "path:flakes/sworkstyle";
    
     #yanky-src = {
@@ -61,12 +66,10 @@
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = let
       nixosConfig = self.nixosConfigurations;
-    in{
-      
+    in
+    {      
       "ogge@ogge" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        #extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
-        # > Our main home-manager configuration file <
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance        
         modules = [ 
           defaults
           ./home/home-manager.nix 

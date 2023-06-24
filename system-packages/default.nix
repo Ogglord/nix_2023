@@ -3,18 +3,19 @@ let
   system = "x86_64-linux";
   nil = inputs.nil.packages.${system}.default;
   my-python-packages = ps: with ps; [
-      #pandas
-      #requests
-      #"os_sys"
-      pycairo
-      pygobject3    
-    ];
+    #pandas
+    #requests
+    #"os_sys"
+    pycairo
+    pygobject3
+  ];
 in
 {
 
-  
   environment.systemPackages = with pkgs;
     [
+      emptty
+      greetd.tuigreet
       nil
       nixpkgs-fmt
       wget

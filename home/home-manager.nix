@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, system, ... }: 
+{ inputs, lib, config, pkgs, system, ... }:
 let
   sworkstyle = inputs.sworkstyle.packages.x86_64-linux.sworkstyle;
   colorscheme = import ./colors.nix;
@@ -15,7 +15,7 @@ in
     ./waybar
     ./wofi
     ./scripts
-    ];
+  ];
 
   nixpkgs = {
     # You can add overlays here
@@ -31,7 +31,7 @@ in
       # })
     ];
     # Configure your nixpkgs instance
-    config = {      
+    config = {
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = (_: true);
@@ -49,19 +49,19 @@ in
 
   # Add stuff for your user as you see fit:
   home.packages = with pkgs; [
-    _1password  
+    _1password
     alacritty
     authy
     brave
     breeze-icons
-    breeze-gtk                             
+    breeze-gtk
     exa
-    fortune   
+    fortune
     libnotify
     libsecret
     neofetch
     micro
-    mako    
+    mako
     pavucontrol
     pinentry-rofi
     spotify
@@ -96,22 +96,22 @@ in
     };
   };
 
- 
 
-  
+
+
 
   ## wayland notification daemon
   services.mako = {
-      enable = true;
-      backgroundColor = "#${colorscheme.light.green}e6"; # 90%
-      textColor = "#${colorscheme.light.fg_1}";
-      borderColor = "#${colorscheme.light.fg_0}";
-      font = "sans-serif";
-      #extraConfig = ''
-      #  [mode=dnd]
-      #  invisible=1
-      #'';
-    };
+    enable = true;
+    backgroundColor = "#${colorscheme.light.green}e6"; # 90%
+    textColor = "#${colorscheme.light.fg_1}";
+    borderColor = "#${colorscheme.light.fg_0}";
+    font = "sans-serif";
+    #extraConfig = ''
+    #  [mode=dnd]
+    #  invisible=1
+    #'';
+  };
 
 
   programs.alacritty = {
@@ -162,28 +162,28 @@ in
 
 
       key_bindings = [
-      # { key = "V"; mods = "Control"; action = "Paste"; }
-      # { key = "C"; mods = "Control"; action = "Copy"; }
-      # { key = "Q"; mods = "Command"; action = "Quit"; }
-      # { key = "Q"; mods = "Control"; chars = "\\x11"; }
-  #     { key = "F"; mods = "Alt"; chars = "\\x1bf"; }
-  #     { key = "B"; mods = "Alt"; chars = "\\x1bb"; }
-  #     { key = "D"; mods = "Alt"; chars = "\\x1bd"; }
-  #    { key = "Key3"; mods = "Alt"; chars = "#"; }
-  #     { key = "Slash"; mods = "Control"; chars = "\\x1f"; }
-  #     { key = "Period"; mods = "Alt"; chars = "\\e-\\e."; }
-  #     {
-  #       key = "N";
-  #       mods = "Command";
-  #       command = {
-  #         program = "open";
-  #         args = [ "-nb" "io.alacritty" ];
-  #       };
-  #     }
+        # { key = "V"; mods = "Control"; action = "Paste"; }
+        # { key = "C"; mods = "Control"; action = "Copy"; }
+        # { key = "Q"; mods = "Command"; action = "Quit"; }
+        # { key = "Q"; mods = "Control"; chars = "\\x11"; }
+        #     { key = "F"; mods = "Alt"; chars = "\\x1bf"; }
+        #     { key = "B"; mods = "Alt"; chars = "\\x1bb"; }
+        #     { key = "D"; mods = "Alt"; chars = "\\x1bd"; }
+        #    { key = "Key3"; mods = "Alt"; chars = "#"; }
+        #     { key = "Slash"; mods = "Control"; chars = "\\x1f"; }
+        #     { key = "Period"; mods = "Alt"; chars = "\\e-\\e."; }
+        #     {
+        #       key = "N";
+        #       mods = "Command";
+        #       command = {
+        #         program = "open";
+        #         args = [ "-nb" "io.alacritty" ];
+        #       };
+        #     }
       ];
     };
   };
-      
+
   programs.vscode = {
     enable = true;
     extensions = with pkgs.vscode-extensions; [
@@ -197,7 +197,7 @@ in
       "workbench.colorTheme" = "Dracula";
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil";
-      "nix.serverSettings" = {    
+      "nix.serverSettings" = {
         "nil" = {
           "diagnostics" = {
             "ignored" = [ "unused_binding" "unused_with" ];
@@ -207,31 +207,32 @@ in
           };
         };
       };
+      "editor.formatOnSave" = true;
     };
   };
-    
 
-    
+
+
   programs.git = {
-      enable = true;      
-      # Additional options for the git program
-      package = pkgs.gitAndTools.gitFull; # Install git wiith all the optional extras
-      userName = "ogglord";
-      userEmail = "oag@proton.me";
-      extraConfig = {
-        # Use vim as our default git editor
-        core.editor = "nano";
-        # Cache git credentials for 15 minutes
-        credential.helper = "cache";
-      };
+    enable = true;
+    # Additional options for the git program
+    package = pkgs.gitAndTools.gitFull; # Install git wiith all the optional extras
+    userName = "ogglord";
+    userEmail = "oag@proton.me";
+    extraConfig = {
+      # Use vim as our default git editor
+      core.editor = "nano";
+      # Cache git credentials for 15 minutes
+      credential.helper = "cache";
+    };
   };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  
+
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
-  home.stateVersion = "23.05";  
+  home.stateVersion = "23.05";
 }
