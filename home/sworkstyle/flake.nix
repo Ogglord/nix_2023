@@ -27,7 +27,7 @@
         # create the workspace & dependencies package set
         rustPkgs = pkgs.rustBuilder.makePackageSet {
           rustVersion = "1.61.0";
-          workspaceSrc = ./src;
+          workspaceSrc = "./src";
           packageFun = import ./Cargo.nix;
         };
 
