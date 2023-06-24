@@ -56,6 +56,8 @@ in
     breeze-icons
     breeze-gtk
     exa
+    #fuzzel
+    rofi-wayland-unwrapped
     fortune
     libnotify
     libsecret

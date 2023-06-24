@@ -9,8 +9,8 @@
   # needed to get completion for system packages
   environment.pathsToLink = [ "/share/zsh" ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.shellAliases = { rofi = "wofi"; };
-  
+  #environment.shellAliases = { rofi = "wofi"; };
+
 }
 
 

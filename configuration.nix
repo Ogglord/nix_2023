@@ -170,6 +170,10 @@
           command = "/run/current-system/sw/bin/reboot";
           options = [ "NOPASSWD" ];
         }
+        {
+          command = "/run/current-system/sw/bin/tailscale";
+          options = [ "NOPASSWD" ];
+        }
       ];
     }
   ];
