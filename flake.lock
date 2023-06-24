@@ -438,12 +438,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-gjv1vtI7yRPPu1pcxc2jW61/WSfy+gBKMfAyWtkNmeI=",
-        "path": "flakes/sworkstyle",
+        "narHash": "sha256-Gi3ocrP7on636JEXZ6bU5LIzBJNuNnlIOfiUUf1u5vA=",
+        "path": "./flakes/sworkstyle",
         "type": "path"
       },
       "original": {
-        "path": "flakes/sworkstyle",
+        "path": "./flakes/sworkstyle",
         "type": "path"
       }
     },

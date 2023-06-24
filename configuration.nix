@@ -57,7 +57,7 @@
     font = "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
     packages = with pkgs; [ terminus_font ];
     keyMap = "sv-latin1";
-    useXkbConfig = true; # use xkbOptions in tty.
+    useXkbConfig = false; # use xkbOptions in tty.
   };
 
   # Configure keymap in X11

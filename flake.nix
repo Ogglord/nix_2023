@@ -25,7 +25,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     # Local directories (for absolute paths you can omit 'path:')
     # sway workplace renaming toolip 
-    sworkstyle.url = "path:flakes/sworkstyle";
+    sworkstyle.url = "path:./flakes/sworkstyle";
 
     #yanky-src = {
     #  url = "github:gbprod/yanky.nvim";
