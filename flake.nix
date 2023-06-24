@@ -16,10 +16,7 @@
     };
      # Local directories (for absolute paths you can omit 'path:')
     sworkstyle.url = "path:flakes/sworkstyle";
-    #home-manager = {
-    #  url = "github:nix-community/home-manager";
-    #  inputs.nixpkgs.follows = "unstable"; 	
-    #};
+   
     #yanky-src = {
     #  url = "github:gbprod/yanky.nvim";
     #  flake = false;
@@ -39,11 +36,9 @@
           make-available-in-args = p: import p { inherit (pkgs.stdenv.targetPlatform) system; };
         in
         {
-          unstable = make-available-in-args inputs.unstable; 
-          nil = inputs.nil;
-          sworkstyle = inputs.sworkstyle;          
+          unstable = make-available-in-args inputs.unstable;                
           nur = make-available-in-args inputs.nur;
-          inputs = inputs;
+          inputs = inputs; # removes the need for specialArgs = {inherit inputs;};
         };
     };
   in
@@ -52,7 +47,7 @@
       {
         ogge = nixpkgs.lib.nixosSystem {
           inherit system;          
-          specialArgs = {inherit inputs;};
+          #specialArgs = {inherit inputs;};
           modules =
             [              
               lanzaboote.nixosModules.lanzaboote
@@ -70,7 +65,7 @@
       
       "ogge@ogge" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
+        #extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
         # > Our main home-manager configuration file <
         modules = [ 
           defaults

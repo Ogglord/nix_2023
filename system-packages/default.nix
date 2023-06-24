@@ -1,7 +1,7 @@
-{ pkgs, lib, unstable, nil, ... }:
+{ pkgs, lib, unstable, inputs, ... }:
 let
   system = "x86_64-linux";
-  #nil = nil.packages.${system}.default;
+  nil = inputs.nil.packages.${system}.default;
   my-python-packages = ps: with ps; [
       #pandas
       #requests
@@ -15,7 +15,7 @@ in
   
   environment.systemPackages = with pkgs;
     [
-      nil.packages.${system}.default
+      nil
       nixpkgs-fmt
       wget
       bash

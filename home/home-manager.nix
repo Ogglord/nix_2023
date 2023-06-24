@@ -1,6 +1,6 @@
-{ inputs, lib, config, pkgs, system, sworkstyle, ... }: 
+{ inputs, lib, config, pkgs, system, ... }: 
 let
- inherit sworkstyle;
+  sworkstyle = inputs.sworkstyle.packages.x86_64-linux.sworkstyle;
   colorscheme = import ./colors.nix;
 in
 {
