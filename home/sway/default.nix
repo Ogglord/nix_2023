@@ -103,6 +103,9 @@ in
         {
           app_id = "pavucontrol";
         }
+        {
+          window_role = "(pop-up|bubble|dialog)";
+        }
       ];
       window.commands = [
         {
