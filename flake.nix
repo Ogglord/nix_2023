@@ -2,12 +2,17 @@
   description = "Ogglords Flake based NixOS configuration Juny 2023";
 
   inputs = {
+    # secure boot package
+    lanzaboote.url = "github:nix-community/lanzaboote";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    # nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    #user repositories (not used any yet)
     nur.url = "github:nix-community/nur";
-    # secure boot package
-    lanzaboote.url = "github:nix-community/lanzaboote";
     # NIx Language server
     nil = {
       url = "github:oxalica/nil";

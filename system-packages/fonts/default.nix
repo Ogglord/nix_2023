@@ -9,6 +9,7 @@
       roboto
       ubuntu_font_family
       noto-fonts-emoji
+      meslo-lgs-nf
     ];
 
     fontconfig = {

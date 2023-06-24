@@ -5,37 +5,39 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { 
-      device="/dev/disk/by-partlabel/BTRFS2";
+    {
+      device = "/dev/disk/by-partlabel/BTRFS2";
       fsType = "btrfs";
       options = [ "subvol=root" "compress=zstd" ];
     };
 
   fileSystems."/home" =
     {
-      device="/dev/disk/by-partlabel/BTRFS2";
+      device = "/dev/disk/by-partlabel/BTRFS2";
       fsType = "btrfs";
       options = [ "subvol=home" "compress=zstd" ];
     };
 
   fileSystems."/nix" =
-    { 
-      device="/dev/disk/by-partlabel/BTRFS2";
+    {
+      device = "/dev/disk/by-partlabel/BTRFS2";
       fsType = "btrfs";
       options = [ "subvol=nix" "compress=zstd" "noatime" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/EDDC-8BE4";
+    {
+      device = "/dev/disk/by-uuid/EDDC-8BE4";
       fsType = "vfat";
     };
 
@@ -57,5 +59,5 @@
       driSupport = true;
     };
   };
-  
+
 }
