@@ -1,6 +1,6 @@
-{ inputs, lib, config, pkgs, system, nixosConfig, sworkstyle, ... }: 
+{ inputs, lib, config, pkgs, system, sworkstyle, ... }: 
 let
- inherit (nixosConfig.system) stateVersion sworkstyle;
+ inherit sworkstyle;
   colorscheme = import ./colors.nix;
 in
 {
