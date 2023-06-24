@@ -27,8 +27,14 @@
         # create the workspace & dependencies package set
         rustPkgs = pkgs.rustBuilder.makePackageSet {
           rustVersion = "1.61.0";
-          workspaceSrc = "./src";
+          
           packageFun = import ./Cargo.nix;
+          workspaceSrc = pkgs.fetchFromGitHub {
+            owner = "Lyr-7D1h";
+            repo = "swayest_workstyle";
+            rev = "c5d50d313c2bcd8c5eb40da487e0e76a83854eb6";
+            sha256 = "0idaksm5hwikh7y7vsksd5cxl62mab5mhprgrcgpaggv5h1ankhf";
+          };
         };
 
       in rec {
