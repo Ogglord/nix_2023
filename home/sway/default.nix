@@ -105,7 +105,7 @@ in
 
         floating.criteria = [
           {
-            title = "(?i)^(open|save|save as|new).?(workspace|file|directory|dir|new|.*\.{1}[a-z]{3}$|$)";
+            title = "(?i)^(open|save|save as).?(workspace|file|directory|dir|new|.*\.{1}[a-z]{3}$|$)";
           }
           {
             app_id = "pavucontrol";
