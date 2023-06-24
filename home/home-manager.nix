@@ -14,8 +14,8 @@ in
     ./sway
     ./waybar
     ./wofi
-    (./. + "/static resources")
     ./vscode
+    ./static_files
   ];
 
   nixpkgs = {
