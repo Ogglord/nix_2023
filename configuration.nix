@@ -1,4 +1,7 @@
 { config, pkgs, lib, inputs, unstable, ... }:
+let
+  sworkstyle = inputs.sworkstyle.packages.x86_64-linux.sworkstyle;
+in
 {
   nix.settings.experimental-features = [
     "nix-command"
@@ -83,6 +86,42 @@
     #interfaces.wlp3s0.useDHCP = true;
     #  networking.wireless.networks.Tele2_9c594f.psk = "cd3m2y4a";  
     networkmanager.enable = true;
+  };
+
+  programs.sway = {
+    enable = true;
+    extraPackages = with pkgs; [
+      pavucontrol #sound control
+      mako # notification daemon
+      swaylock # lockscreen
+      swayidle
+      sworkstyle #workspace renaming utility
+      breeze-icons
+      breeze-gtk
+      wl-clipboard
+      wl-gammactl
+
+      # xwayland # for legacy apps
+      # waybar # configured as separate module
+      kanshi # autorandr
+      # dmenu
+      # wofi # replacement for dmenu
+      brightnessctl
+      gammastep # make it red at night!
+      # sway-contrib.grimshot # screenshots
+      # swayr #Swayr, a window-switcher & more for sway
+
+
+      mate.caja
+      # gnome.nautilus # file explorer
+      evince # document viewer (pdf etc.)
+
+      # https://discourse.nixos.org/t/some-lose-ends-for-sway-on-nixos-which-we-should-fix/17728/2?u=senorsmile
+      gnome3.adwaita-icon-theme # default gnome cursors
+      glib # gsettings
+      dracula-theme # gtk theme (dark)
+      #gnome.networkmanagerapplet
+    ];
   };
 
 

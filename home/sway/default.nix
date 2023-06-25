@@ -1,6 +1,6 @@
 { pkgs, lib, inputs, ... }:
 let
-  sworkstyle = inputs.sworkstyle.packages.x86_64-linux.sworkstyle;
+  #sworkstyle = inputs.sworkstyle.packages.x86_64-linux.sworkstyle;
   term = "alacritty";
   #menu = "wofi --show run";
   menu = "rofi -show drun -disable-history";
@@ -8,43 +8,10 @@ let
   #"${modifier}+Shift+d" = "exec rofi -show run -disable-history";
 in
 {
-  imports = [ ];
 
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [
-      pavucontrol #sound control
-      mako # notification daemon
-      swaylock # lockscreen
-      swayidle
-      sworkstyle #workspace renaming utility
-      breeze-icons
-      breeze-gtk
-      wl-clipboard
-      wl-gammactl
-
-      # xwayland # for legacy apps
-      # waybar # configured as separate module
-      kanshi # autorandr
-      # dmenu
-      # wofi # replacement for dmenu
-      brightnessctl
-      gammastep # make it red at night!
-      # sway-contrib.grimshot # screenshots
-      # swayr #Swayr, a window-switcher & more for sway
-
-
-      mate.caja
-      # gnome.nautilus # file explorer
-      evince # document viewer (pdf etc.)
-
-      # https://discourse.nixos.org/t/some-lose-ends-for-sway-on-nixos-which-we-should-fix/17728/2?u=senorsmile
-      gnome3.adwaita-icon-theme # default gnome cursors
-      glib # gsettings
-      dracula-theme # gtk theme (dark)
-      gnome.networkmanagerapplet
-    ];
 
     config =
       {
@@ -97,7 +64,7 @@ in
             "${mod}+tab" = "workspace next_on_output";
             "${mod}+Shift+tab" = "workspace prev_on_output";
 
-            "${mod}+Space" = "focus toggle_mode";
+            "${mod}+space" = "floating toggle";
 
             "${mod}+Left" = "focus left";
             "${mod}+Down" = "focus down";
