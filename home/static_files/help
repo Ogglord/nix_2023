@@ -12,4 +12,7 @@ vulkaninfo | less
 # 3. shows resolution and refresh rate
 swaymsg -t get_outputs
 
+# 4. get info about keyboard and mouse events
+sudo libinput debug-events
+
 EOF
