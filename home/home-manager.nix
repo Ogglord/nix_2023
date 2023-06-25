@@ -67,6 +67,7 @@ in
     mako
     pavucontrol
     pinentry-rofi
+    psst
     spotify
     swaylock
     swayidle
