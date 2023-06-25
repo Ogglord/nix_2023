@@ -119,6 +119,7 @@ in
     #'';
   };
 
+  ## resolution profile mgmt
   services.kanshi = {
     enable = true;
     systemdTarget = "";
