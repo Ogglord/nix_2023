@@ -54,6 +54,7 @@ in
             "${mod}+Return" = "exec ${term}";
             "${mod}+q" = "kill";
             "${mod}+d" = "exec ${menu}";
+            "${mod}+p" = "exec tessen"; ## pwd manager
             #  	    "${modifier}+Shift+q" = "kill";
             #"${modifier}+d" = "exec ${pkgs.dmenu}/bin/dmenu_path | ${pkgs.dmenu}/bin/dmenu | ${pkgs.findutils}/bin/xargs swaymsg exec --";
             "${mod}+Shift+e" = "exec /home/ogge/.local/bin/shutdownmenu.sh";

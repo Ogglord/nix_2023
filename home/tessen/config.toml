@@ -20,7 +20,7 @@ action="autotype"
 # while running tessen
 # fuzzel_config_file=""
 # tofi_config_file=""
-rofi_config_file="$XDG_CONFIG_HOME/rofi/test.rasi"
+rofi_config_file="$XDG_CONFIG_HOME/rofi/config.rasi"
 # wofi_config_file=""
 # wofi_style_file=""
 # wofi_color_file=""
@@ -28,7 +28,7 @@ rofi_config_file="$XDG_CONFIG_HOME/rofi/test.rasi"
 
 # the name of the key which will be used to decide the username
 # this can also be a simple regex such as (user|login)
-# userkey="(user|login)"
+userkey="(user|login)"
 # the name of the key which will be used to decide the url
 # this can also be a simple regex such as (url|website)
 # urlkey="(url|website)"
