@@ -15,6 +15,7 @@ in
 
   environment.systemPackages = with pkgs;
     [
+      vulkan-tools
       devenv
       emptty
       greetd.tuigreet

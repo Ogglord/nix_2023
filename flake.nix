@@ -26,6 +26,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
+    # for proton-ge
+    nix-gaming.url = "github:fufexan/nix-gaming";
     # Local directories (for absolute paths you can omit 'path:')
     # sway workplace renaming toolip 
     sworkstyle.url = "path:./flakes/sworkstyle";

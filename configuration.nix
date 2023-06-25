@@ -3,11 +3,6 @@ let
   sworkstyle = inputs.sworkstyle.packages.x86_64-linux.sworkstyle;
 in
 {
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
   imports =
     [
       ./env
@@ -15,9 +10,19 @@ in
       ./system-packages
       ./system-packages/fonts
       ./system-packages/greetd
+      ./system-packages/steam
     ];
 
   nixpkgs.config.allowUnfree = true;
+
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    substituters = [ "https://nix-gaming.cachix.org" ];
+    trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
+  };
 
   time.timeZone = "Europe/Stockholm";
 

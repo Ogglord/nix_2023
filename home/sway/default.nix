@@ -43,8 +43,9 @@ in
         };
 
         output = {
-          eDP-1 = {
+          DP-2 = {
             scale = "1";
+            adaptive_sync = "on";
           };
         };
         keybindings =
@@ -134,6 +135,9 @@ in
           {
             window_type = "menu";
           }
+          {
+            title = "Friends List";
+          }
 
 
         ];
@@ -218,8 +222,11 @@ in
           "number 2" = [{ app_id = "brave-browser"; }];
           "number 3" = [
             { app_id = "code"; }
-            { app_id = "Slack"; }
+          ];
+          "number 4" = [
+            { class = "steam"; }
             { app_id = "Steam"; }
+            { title = "Steam"; }
           ];
           "number 10" = [{ app_id = "psst-gui"; }];
         };

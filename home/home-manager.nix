@@ -17,6 +17,7 @@ in
     ./vscode
     ./static_files
     ./tessen
+    ./mangohud
   ];
 
   nixpkgs = {
@@ -117,6 +118,28 @@ in
     #  invisible=1
     #'';
   };
+
+  services.kanshi = {
+    enable = true;
+    systemdTarget = "";
+    profiles = {
+      normal = {
+        outputs = [
+          #{
+          #  criteria = "DP-2";
+          #  status = "disable";
+          #}
+          {
+            criteria = "DP-2";
+            position = "0,0";
+            mode = "2560x1440@240Hz";
+          }
+        ];
+      };
+    };
+  };
+
+
 
   programs.git = {
     enable = true;
