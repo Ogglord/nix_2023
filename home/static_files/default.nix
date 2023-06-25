@@ -14,6 +14,6 @@
   home.file.".config/mimeapps.list".source = ./mimeapps.list;
 
   ## help command
-  home.file.".local/bin/help".source = ./rofi-op.sh;
+  home.file.".local/bin/help".source = ./help;
 
 }

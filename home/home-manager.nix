@@ -9,15 +9,17 @@ in
     # inputs.nix-colors.homeManagerModule
 
     # You can also split up your configuration and import pieces of it here:
+    ./static_files
     ./zsh
     ./sway
     ./waybar
-    #./wofi
     ./rofi
+
     ./vscode
-    ./static_files
-    ./tessen
-    ./mangohud
+
+    ./tessen ## password mgr (FE) using gopass as BE
+    ./mangohud ## gaming overlay
+    ./kanshi ## refresh and resolution manager
   ];
 
   nixpkgs = {
@@ -119,26 +121,7 @@ in
     #'';
   };
 
-  ## resolution profile mgmt
-  services.kanshi = {
-    enable = true;
-    systemdTarget = "";
-    profiles = {
-      normal = {
-        outputs = [
-          #{
-          #  criteria = "DP-2";
-          #  status = "disable";
-          #}
-          {
-            criteria = "DP-2";
-            position = "0,0";
-            mode = "2560x1440@240Hz";
-          }
-        ];
-      };
-    };
-  };
+
 
 
 
