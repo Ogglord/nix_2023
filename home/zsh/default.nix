@@ -9,7 +9,7 @@
     enable = true;
     shellAliases = {
       la = "exa -al";
-      l  = "exa -l";
+      l = "exa -l";
       ll = "exa -alh";
       ls = "exa";
 
@@ -18,21 +18,33 @@
       #home-swi = "home-manager switch --flake '~/nix/.#ogge'";
     };
 
-    initExtraFirst = 
-    ''
-      # hm <command> <optionalExtraArg>
-      function hm {
-          readonly command=''${1:?"The command to home-manager must be specified."}
+    initExtraFirst =
+      ''
+        # hm <command> <optionalExtraArg>
+        function hm {
+            pushd /home/ogge/nix
+
+            git add .
+
+            readonly command=''${1:?"The command to home-manager must be specified."}
           
-          home-manager "$command" --flake '/home/ogge/nix/.#ogge@ogge' $2
-      } 
-      # nr <command> <optionalExtraArg>
-      function nr {
-          readonly command=''${1:?"The command to nixos-rebuild must be specified."}
+            home-manager "$command" --flake '.#ogge@ogge' $2
+
+            popd
+        } 
+        # nr <command> <optionalExtraArg>
+        function nr {
+            pushd /home/ogge/nix
+
+            git add .
+
+            readonly command=''${1:?"The command to nixos-rebuild must be specified."}
           
-          sudo nixos-rebuild "$command" --flake '/home/ogge/nix/.#ogge' $2
-      } 
-    '';
+            sudo nixos-rebuild "$command" --flake '.#' $2
+
+            popd
+        } 
+      '';
 
     enableAutosuggestions = true;
     enableCompletion = true;

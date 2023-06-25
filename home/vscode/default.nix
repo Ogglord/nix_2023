@@ -29,6 +29,7 @@
       };
       "editor.formatOnSave" = true;
       "git.enableSmartCommit" = true;
+      "git.confirmSync" = false;
     };
 
     globalSnippets = {
