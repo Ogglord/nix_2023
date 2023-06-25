@@ -24,6 +24,7 @@ in
       bash
       polkit_gnome
       polkit
+      exa
       sysz
       jq
       libvirt

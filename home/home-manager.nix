@@ -1,6 +1,5 @@
 { inputs, lib, config, pkgs, system, ... }:
 let
-  sworkstyle = inputs.sworkstyle.packages.x86_64-linux.sworkstyle;
   colorscheme = import ./colors.nix;
 in
 {
@@ -71,29 +70,17 @@ in
     alacritty
     authy
     brave
-    breeze-icons
-    breeze-gtk
-    exa
-    #fuzzel
-    #rofi-wayland-unwrapped
-    fortune
+    psst
     gopass ## password manager backend
+
+    fortune
     libnotify
     libsecret
     neofetch
     micro
-    mako
-    pavucontrol
-    pinentry-rofi
-    psst
-    spotify
-    swaylock
-    swayidle
-    sworkstyle
-    htop
-    wl-clipboard
-    wl-gammactl
-    #wofi
+
+
+
 
     ## fonts
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Hack" ]; })
