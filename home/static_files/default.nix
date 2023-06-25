@@ -8,4 +8,9 @@
   home.file.".config/sworkstyle/config.toml".source = ./sworkstyle_config.toml;
   home.file.".config/mimeapps.list".source = ./mimeapps.list;
 
+
+
+  ## my useful commands
+  home.file.".local/bin/help".source = ./rofi-op.sh;
+
 }
