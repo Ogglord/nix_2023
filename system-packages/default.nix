@@ -2,6 +2,7 @@
 let
   system = "x86_64-linux";
   nil = inputs.nil.packages.${system}.default;
+  devenv = inputs.devenv.packages.x86_64-linux.devenv;
   my-python-packages = ps: with ps; [
     #pandas
     #requests
@@ -14,6 +15,7 @@ in
 
   environment.systemPackages = with pkgs;
     [
+      devenv
       emptty
       greetd.tuigreet
       nil
@@ -26,6 +28,7 @@ in
       jq
       libvirt
       cairo
+      croc
       pkg-config
       glib
       gtk3

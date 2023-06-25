@@ -1,6 +1,10 @@
 { pkgs, lib, ... }:
 let
   term = "alacritty";
+  #menu = "wofi --show run";
+  menu = "rofi -show drun -disable-history";
+  #"${modifier}+d" = "exec rofi -show drun -disable-history";
+  #"${modifier}+Shift+d" = "exec rofi -show run -disable-history";
 in
 {
   imports = [ ];
@@ -12,8 +16,6 @@ in
       {
         modifier = "Mod4"; # windows key
         terminal = term;
-        menu = "wofi --show run";
-
 
         fonts = {
           names = [ "Ubuntu" ];
@@ -47,9 +49,6 @@ in
         keybindings =
           let
             mod = "Mod4"; # windows key
-            menu = "wofi --show run";
-            #inherit (config.wayland.windowManager.sway.config) # doesnt work
-            #  menu terminal;
           in
           {
             "${mod}+Return" = "exec ${term}";

@@ -13,9 +13,11 @@ in
     ./zsh
     ./sway
     ./waybar
-    ./wofi
+    #./wofi
+    ./rofi
     ./vscode
     ./static_files
+    ./tessen
   ];
 
   nixpkgs = {
@@ -30,6 +32,19 @@ in
       #     patches = [ ./change-hello-to-hi.patch ];
       #   });
       # })
+      (final: prev: {
+        rofi-wayland-unwrapped = prev.rofi-wayland-unwrapped.overrideAttrs
+          (old: {
+            src = prev.fetchFromGitHub {
+              owner = "lbonn";
+              repo = "rofi";
+              rev = "d06095b5ed40e5d28236b7b7b575ca867696d847";
+              fetchSubmodules = true;
+              sha256 = "0qdp46d8wn3jp57hwj710709drl3dlrjxb8grfmfa6a5lnjwg1zh";
+            };
+            version = "1.7.6+wayland1-git";
+          });
+      })
     ];
     # Configure your nixpkgs instance
     config = {
@@ -48,6 +63,8 @@ in
     ];
   };
 
+  home.file.".local/bin/pass".source = config.lib.file.mkOutOfStoreSymlink "/home/ogge/.nix-profile/bin/gopass";
+
   # Add stuff for your user as you see fit:
   home.packages = with pkgs; [
     _1password
@@ -58,8 +75,9 @@ in
     breeze-gtk
     exa
     #fuzzel
-    rofi-wayland-unwrapped
+    #rofi-wayland-unwrapped
     fortune
+    gopass ## password manager backend
     libnotify
     libsecret
     neofetch
