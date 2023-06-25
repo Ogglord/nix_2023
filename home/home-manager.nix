@@ -63,9 +63,14 @@ in
       "$HOME/.cargo/bin"
       "$HOME/.local/bin"
     ];
+    sessionVariables = {
+      "MANGOHUD" = 1; ## vulkan game overlay
+      "EDITOR" = "micro";
+    };
   };
 
   home.file.".local/bin/pass".source = config.lib.file.mkOutOfStoreSymlink "/home/ogge/.nix-profile/bin/gopass";
+
 
   # Add stuff for your user as you see fit:
   home.packages = with pkgs; [

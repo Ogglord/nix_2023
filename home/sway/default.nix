@@ -48,14 +48,17 @@ in
             adaptive_sync = "on";
           };
         };
+
         keybindings =
           let
-            mod = "Mod4"; # windows key
+            # alt = Mod1 (keycode -1 according to libinput and my current varmilo keyboard)
+            # win = Mod4 (keycode 125)
+            mod = "Mod4"; # windows key keycode=125
           in
           {
-            "${mod}+Return" = "exec ${term}";
+            "${mod}+Return" = ''exec "${term}" '';
             "${mod}+q" = "kill";
-            "${mod}+d" = "exec ${menu}";
+            "${mod}+space" = "exec ${menu}";
             "${mod}+p" = "exec tessen"; ## pwd manager
             #  	    "${modifier}+Shift+q" = "kill";
             #"${modifier}+d" = "exec ${pkgs.dmenu}/bin/dmenu_path | ${pkgs.dmenu}/bin/dmenu | ${pkgs.findutils}/bin/xargs swaymsg exec --";
@@ -65,7 +68,7 @@ in
             "${mod}+tab" = "workspace next_on_output";
             "${mod}+Shift+tab" = "workspace prev_on_output";
 
-            "${mod}+space" = "floating toggle";
+            "${mod}+f" = "floating toggle";
 
             "${mod}+Left" = "focus left";
             "${mod}+Down" = "focus down";
@@ -174,6 +177,11 @@ in
 
           {
             command = "systemctl --user restart waybar ";
+            always = true;
+          }
+
+          {
+            command = "systemctl --user restart kanshi ";
             always = true;
           }
 

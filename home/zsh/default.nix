@@ -12,7 +12,7 @@
       l = "exa -l";
       ll = "exa -alh";
       ls = "exa";
-
+      rofi = "rofi -i";
       help = ''( echo "Hi Ogglord, in case your forgot:"; echo "nixos-rebuild (flake mode): 'nr switch' or 'nr build'"; echo "home-manager (flake mode): 'hm switch' or 'hm build'" )'';
       #nix-swi = "sudo nixos-rebuild switch --flake '~/nix/.#ogge'";
       #home-swi = "home-manager switch --flake '~/nix/.#ogge'";

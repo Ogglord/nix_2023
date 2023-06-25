@@ -3,7 +3,8 @@
   ## resolution profile mgmt
   services.kanshi = {
     enable = true;
-    systemdTarget = "sway-session.target";
+    #systemdTarget = "sway-session.target";
+    systemdTarget = "";
     profiles = {
       normal = {
         outputs = [

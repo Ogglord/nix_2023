@@ -30,6 +30,7 @@
       "editor.formatOnSave" = true;
       "git.enableSmartCommit" = true;
       "git.confirmSync" = false;
+      "window.titleBarStyle" = "custom";
     };
 
     globalSnippets = {
