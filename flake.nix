@@ -30,7 +30,7 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
     # Local directories (for absolute paths you can omit 'path:')
     # sway workplace renaming toolip 
-    sworkstyle.url = "path:./flakes/sworkstyle";
+    sworkstyle.url = "github:ogglord/sworkstyle";
 
     #yanky-src = {
     #  url = "github:gbprod/yanky.nvim";
@@ -53,6 +53,7 @@
           {
             unstable = make-available-in-args inputs.unstable;
             nur = make-available-in-args inputs.nur;
+            system = system;
             inputs = inputs; # removes the need for specialArgs = {inherit inputs;};
           };
       };

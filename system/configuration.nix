@@ -1,6 +1,6 @@
-{ config, pkgs, lib, inputs, unstable, ... }:
+{ config, pkgs, lib, inputs, unstable, system, ... }:
 let
-  sworkstyle = inputs.sworkstyle.packages.x86_64-linux.sworkstyle;
+  sworkstyle = inputs.sworkstyle.packages.${system}.sworkstyle;
 in
 {
   imports =

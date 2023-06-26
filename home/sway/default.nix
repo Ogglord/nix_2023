@@ -21,6 +21,7 @@ in
       {
         modifier = "Mod4"; # windows key
         terminal = term;
+
         workspaceAutoBackAndForth = true;
 
         fonts = {

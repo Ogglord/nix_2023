@@ -701,14 +701,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-Gi3ocrP7on636JEXZ6bU5LIzBJNuNnlIOfiUUf1u5vA=",
-        "path": "./flakes/sworkstyle",
-        "type": "path"
+        "lastModified": 1687812399,
+        "narHash": "sha256-V+Jgc0WecRUwwToLl/ktHZGYHi7P1CaCt8tv4moJiaw=",
+        "owner": "ogglord",
+        "repo": "sworkstyle",
+        "rev": "3a9a2bc69aa1191027bc5b1f0e50bfdeb13994eb",
+        "type": "github"
       },
       "original": {
-        "path": "./flakes/sworkstyle",
-        "type": "path"
+        "owner": "ogglord",
+        "repo": "sworkstyle",
+        "type": "github"
       }
     },
     "systems": {
