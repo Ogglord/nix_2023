@@ -8,6 +8,10 @@ let
   #"${modifier}+Shift+d" = "exec rofi -show run -disable-history";
 in
 {
+  ## shutdown menu script
+  home.file.".local/bin/shutdownmenu.sh".source = ./shutdownmenu.sh;
+  ## sworkstyle config - map applications to workspace icons in sway
+  home.file.".config/sworkstyle/config.toml".source = ./sworkstyle_config.toml;
 
   wayland.windowManager.sway = {
     enable = true;

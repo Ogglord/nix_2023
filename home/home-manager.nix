@@ -9,14 +9,11 @@ in
     # inputs.nix-colors.homeManagerModule
 
     # You can also split up your configuration and import pieces of it here:
-    ./static_files
     ./zsh
     ./sway
     ./waybar
     ./rofi
-
-    ./vscode
-
+    ./code
     ./tessen ## password mgr (FE) using gopass as BE
     ./mangohud ## gaming overlay
     ./kanshi ## refresh and resolution manager
@@ -69,32 +66,13 @@ in
     };
   };
 
+  ## add our help command
+  home.file.".local/bin/help".source = ./help_command.sh;
+  ## set default apps (browser, file explorer, etc.)
+  home.file.".config/mimeapps.list".source = ./mimeapps.list;
+  ## symlink gopass to pass
   home.file.".local/bin/pass".source = config.lib.file.mkOutOfStoreSymlink "/home/ogge/.nix-profile/bin/gopass";
 
-
-  # Add stuff for your user as you see fit:
-  home.packages = with pkgs; [
-    _1password
-    alacritty
-    authy
-    brave
-    psst
-    gopass ## password manager backend
-
-    fortune
-    libnotify
-    libsecret
-    neofetch
-    micro
-
-
-
-
-    ## fonts
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Hack" ]; })
-    roboto # serif default
-    ubuntu_font_family # sans-serif default
-  ];
 
   fonts.fontconfig.enable = true;
 

@@ -67,7 +67,7 @@
               [
                 lanzaboote.nixosModules.lanzaboote
                 defaults
-                ./configuration.nix
+                ./system/configuration.nix
               ];
           };
         };

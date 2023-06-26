@@ -7,37 +7,54 @@ let
     #pandas
     #requests
     #"os_sys"
-    pycairo
-    pygobject3
+    #pycairo
+    #pygobject3
   ];
 in
 {
 
   environment.systemPackages = with pkgs;
     [
-      vulkan-tools
-      devenv
-      emptty
-      greetd.tuigreet
-      nil
-      nixpkgs-fmt
-      wget
-      bash
-      polkit_gnome
-      polkit
-      exa
-      sysz
-      jq
-      libvirt
-      cairo
-      croc
-      pkg-config
-      glib
-      gtk3
-      gobject-introspection
-      tailscale
-      #gtk3
+      ## fonts
+      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Hack" ]; })
+
+      _1password
+
       (pkgs.python3.withPackages my-python-packages)
+
+      alacritty # terminal written in rust                
+      authy
+      bash
+      bat
+      brave
+      croc # send receive files from CLI across internet
+      devenv # load up a dev env using nix flakes in one line
+      emptty # Dead simple CLI Display Manager on TTY.
+      exa # better ls
+      fortune # fortune cookie
+      gopass ## password manager backend
+      greetd.tuigreet #graphical console greeter for greetd.
+      gtk3
+      jq # json formatter
+      libdrm # for getting ADM GPU Name
+      libnotify
+      libsecret
+      libvirt
+      micro # better nano
+      neofetch
+      nil # NI Language interpreter
+      nixpkgs-fmt
+      pkg-config
+      polkit
+      polkit_gnome
+      psst ## spotify client
+      roboto # serif default
+      sysz # a systemctl gui 
+      tree # file tree vis
+      tailscale
+      ubuntu_font_family # sans-serif default
+      vulkan-tools
+      wget
       # gui apps
       # alacritty # terminal
       # blender # 3D modelling
@@ -77,7 +94,6 @@ in
       # du-dust # better du
       # duf # shows free space on drives
       # dunst # notifications
-      exa # better ls
       # exercism # exercism cli tool for downloading/submitting
       # fd # better find
       # fzf # fuzzy finder
@@ -105,7 +121,7 @@ in
       # taskwarrior # todo app
       # tealdeer # shorter man with examples
       # tokei # better loc
-      tree # file tree vis
+
       # unzip # zip
       # vhs # terminal camera
       # xdotool # automatically type text
@@ -204,7 +220,6 @@ in
       # # docker
       # docker-compose
 
-      # # for getting ADM GPU Name
-      libdrm
+
     ];
 }

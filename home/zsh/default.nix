@@ -7,42 +7,38 @@
 
   programs.zsh = {
     enable = true;
-    shellAliases = {
-      la = "exa -al";
-      l = "exa -l";
-      ll = "exa -alh";
-      ls = "exa";
-      rofi = "rofi -i";
-      help = ''( echo "Hi Ogglord, in case your forgot:"; echo "nixos-rebuild (flake mode): 'nr switch' or 'nr build'"; echo "home-manager (flake mode): 'hm switch' or 'hm build'" )'';
-      #nix-swi = "sudo nixos-rebuild switch --flake '~/nix/.#ogge'";
-      #home-swi = "home-manager switch --flake '~/nix/.#ogge'";
-    };
+
 
     initExtraFirst =
-      ''
-        # hm <command> <optionalExtraArg>
-        function hm {
-            pushd /home/ogge/nix
+      ''        
+        # nix-switch <command> <optionalAction[switch is default]>
+        function nix-switch {
+            pushd /home/ogge/nix > /dev/null
 
             git add .
 
-            readonly command=''${1:?"The command to home-manager must be specified."}
-          
-            home-manager "$command" --flake '.#ogge@ogge' $2
+            readonly command=''${1:?"The command to nix-switch must be specified."}
+            shift
+            action="''${@:-switch}"
 
-            popd
-        } 
-        # nr <command> <optionalExtraArg>
-        function nr {
-            pushd /home/ogge/nix
+            case $command in
 
-            git add .
+              system)
+                echo "executing: sudo nixos-rebuild $action --flake '.#'"
+                sudo nixos-rebuild $action --flake '.#'
+                ;;
 
-            readonly command=''${1:?"The command to nixos-rebuild must be specified."}
-          
-            sudo nixos-rebuild "$command" --flake '.#' $2
+              home)
+                echo "executing: home-manager $action --flake '.#ogge@ogge'"
+                home-manager $action --flake '.#ogge@ogge'
+                ;;
+            
+              *)
+                echo "invalid command: \"$command\". Supported: system, home."
+                ;;
+            esac
 
-            popd
+            popd > /dev/null
         } 
       '';
 
@@ -80,14 +76,74 @@
       ];
     };
 
+
+
     initExtra = ''
       #eval "$(zoxide init zsh)"
-      #eval $(ssh-agent) > /home/ogge/.sshstartup.log && ssh-add /home/ogge/.ssh/ida_rsa 2>> /home/ogge/.sshstartup.log
+      eval $(ssh-agent) > /home/ogge/.sshstartup.log && ssh-add /home/ogge/.ssh/ida_rsa 2>> /home/ogge/.sshstartup.log
 
       export NIX_BUILD_SHELL="zsh"      
-
+      unalias ns
       fpath+=(~/.zfunc)
     '';
+
+    shellAliases = {
+      nsh = "nix-switch home";
+      nss = "nix-switch system";
+      reload = ''(source ~/.zshrc ; echo "Reloading zsh config"...)'';
+      exa = "exa --group-directories-first --color-scale -g";
+      ls = "exa";
+      ll = "exa -alh";
+      l = "exa -lh";
+      lt = "exa -laTh";
+      la = "exa -al";
+      rofi = "rofi -i";
+      #help = ''( echo "Hi Ogglord, in case your forgot:"; echo "nixos-rebuild (flake mode): 'nr switch' or 'nr build'"; echo "home-manager (flake mode): 'hm switch' or 'hm build'" )'';
+      cat = "bat";
+      g = "git";
+      ga = "git add";
+      gaa = "git add --all";
+
+      gbs = "git bisect";
+      gbss = "git bisect start";
+      gbsb = "git bisect bad";
+      gbsg = "git bisect good";
+      gbsr = "git bisect run";
+      gbsre = "git bisect reset";
+
+      gc = "git commit -v";
+      "gc!" = "git commit -v --amend";
+      "gcan!" = "git commit -v -a --no-edit --amend";
+      gcb = "git checkout -b";
+
+      gcm = "git checkout master";
+      gcmsg = "git commit -m";
+      gcp = "git cherry-pick";
+
+      gd = "git diff";
+      gdc = "git diff --cached";
+      gdw = "git diff --word-diff";
+      gdcw = "git diff --cached --word-diff";
+
+      gf = "git fetch";
+      gl = "git pull";
+      glg = "git log --stat";
+      glgp = "git log --stat -p";
+      gp = "git push";
+      gpsup = "git push -u origin $(git symbolic-ref --short HEAD)";
+      gr = "git remote -v";
+      grb = "git rebase";
+      grbi = "git rebase -i";
+      grhh = "git reset --hard HEAD";
+      gst = "git status";
+      gsts = "git stash show --text --include-untracked";
+      gsta = "git stash save";
+      gstaa = "git stash apply";
+      gstl = "git stash list";
+      gstp = "git stash pop";
+      glum = "git pull upstream master";
+      gwch = "git log --patch --no-merges";
+    };
 
   };
 }

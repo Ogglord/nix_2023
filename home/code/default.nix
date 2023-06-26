@@ -10,6 +10,7 @@
       jnoortheen.nix-ide
       yzhang.markdown-all-in-one
       bungcip.better-toml
+      tyriar.sort-lines
     ];
 
     userSettings = {
