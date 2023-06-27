@@ -619,6 +619,23 @@
         "type": "github"
       }
     },
+    "rofi-themes2-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1669502711,
+        "narHash": "sha256-0/0jsoxEU93GdUPbvAbu2Alv47Uwom3zDzjHcm2aPxY=",
+        "owner": "newmanls",
+        "repo": "rofi-themes-collection",
+        "rev": "a1bfac5627cc01183fc5e0ff266f1528bd76a8d2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "newmanls",
+        "ref": "master",
+        "repo": "rofi-themes-collection",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "devenv": "devenv",
@@ -630,6 +647,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_4",
         "nur": "nur",
+        "rofi-themes2-src": "rofi-themes2-src",
         "sworkstyle": "sworkstyle",
         "unstable": "unstable"
       }

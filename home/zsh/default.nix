@@ -82,14 +82,13 @@
       #eval "$(zoxide init zsh)"
       eval $(ssh-agent) > /home/ogge/.sshstartup.log && ssh-add /home/ogge/.ssh/ida_rsa 2>> /home/ogge/.sshstartup.log
 
-      export NIX_BUILD_SHELL="zsh"      
-      unalias ns
+      export NIX_BUILD_SHELL="zsh"
       fpath+=(~/.zfunc)
     '';
 
     shellAliases = {
-      nsh = "nix-switch home";
-      nss = "nix-switch system";
+      hm = "nix-switch home";
+      sys = "nix-switch system";
       reload = ''(source ~/.zshrc ; echo "Reloading zsh config"...)'';
       exa = "exa --group-directories-first --color-scale -g";
       ls = "exa";

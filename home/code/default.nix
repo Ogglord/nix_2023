@@ -32,6 +32,7 @@
       "git.enableSmartCommit" = true;
       "git.confirmSync" = false;
       "window.titleBarStyle" = "custom";
+      "workbench.tree.indent" = 22;
     };
 
     globalSnippets = {

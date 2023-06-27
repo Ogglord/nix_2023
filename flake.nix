@@ -32,6 +32,9 @@
     # sway workplace renaming toolip 
     sworkstyle.url = "github:ogglord/sworkstyle";
 
+    rofi-themes2-src.url = "github:newmanls/rofi-themes-collection/master";
+    rofi-themes2-src.flake = false;
+
     #yanky-src = {
     #  url = "github:gbprod/yanky.nvim";
     #  flake = false;
@@ -44,6 +47,28 @@
   outputs = { self, lanzaboote, nixpkgs, unstable, home-manager, nur, nil, sworkstyle, ... }@inputs:
     let
       system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+      };
+
+
+      rofi-themes2 = pkgs.stdenv.mkDerivation {
+        name = "rofi-themes2";
+        src = builtins.filterSource
+          (path: type: type != "directory" || baseNameOf path != ".rofi")
+          inputs.rofi-themes2-src;
+
+        nativeBuildInputs = [ ];
+        # pathExists path
+
+        installPhase = ''
+          runHook preInstall
+          ls -al $src
+          mkdir -p $out
+          cp -r $src/themes/. $out/
+          runHook postInstall
+        '';
+      };
 
       defaults = { pkgs, ... }: {
         _module.args =
@@ -53,6 +78,7 @@
           {
             unstable = make-available-in-args inputs.unstable;
             nur = make-available-in-args inputs.nur;
+            rofi-themes2 = rofi-themes2;
             system = system;
             inputs = inputs; # removes the need for specialArgs = {inherit inputs;};
           };
@@ -81,11 +107,13 @@
         in
         {
           "ogge@ogge" = home-manager.lib.homeManagerConfiguration {
-            pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance        
+            pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance   
+
             modules = [
               defaults
               ./home/home-manager.nix
             ];
+
           };
         };
     };
