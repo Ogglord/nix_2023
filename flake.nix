@@ -102,9 +102,8 @@
             #specialArgs = {inherit inputs;};
             modules =
               [
-                lanzaboote.nixosModules.lanzaboote
                 defaults
-                ./system/configuration.nix
+                ./seedbox/configuration.nix
               ];
           };
         };
@@ -117,6 +116,15 @@
         in
         {
           "ogge@ogge" = home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance   
+
+            modules = [
+              defaults
+              ./home/home-manager.nix
+            ];
+
+          };
+          "ogge@batu" = home-manager.lib.homeManagerConfiguration {
             pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance   
 
             modules = [
