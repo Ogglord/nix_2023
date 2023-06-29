@@ -35,6 +35,10 @@
     rofi-themes2-src.url = "github:newmanls/rofi-themes-collection/master";
     rofi-themes2-src.flake = false;
 
+
+    nix-ld.url = "github:Mic92/nix-ld";
+    # this line assume that you also have nixpkgs as an input
+    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
     #yanky-src = {
     #  url = "github:gbprod/yanky.nvim";
     #  flake = false;
@@ -44,7 +48,7 @@
     #  flake = false;
     #};
   };
-  outputs = { self, lanzaboote, nixpkgs, unstable, home-manager, nur, nil, sworkstyle, ... }@inputs:
+  outputs = { self, lanzaboote, nixpkgs, unstable, home-manager, nur, nil, sworkstyle, nix-ld, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -102,6 +106,7 @@
             #specialArgs = {inherit inputs;};
             modules =
               [
+                nix-ld.nixosModules.nix-ld
                 defaults
                 ./seedbox/configuration.nix
               ];
