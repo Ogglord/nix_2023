@@ -11,6 +11,7 @@
       yzhang.markdown-all-in-one
       bungcip.better-toml
       tyriar.sort-lines
+      ms-vscode-remote
     ];
 
     userSettings = {
