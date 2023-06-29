@@ -1,0 +1,3 @@
+[submodule "seedbox"]
+	path = seedbox
+	url = git@github.com:Ogglord/nix_seedbox.git
