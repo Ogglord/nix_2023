@@ -129,7 +129,7 @@
 
             modules = [
               defaults
-              ./home/home-manager.nix
+              ./seedbox/home-manager.nix
             ];
 
           };
