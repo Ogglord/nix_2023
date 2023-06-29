@@ -97,6 +97,16 @@
                 ./system/configuration.nix
               ];
           };
+          batu = nixpkgs.lib.nixosSystem {
+            inherit system;
+            #specialArgs = {inherit inputs;};
+            modules =
+              [
+                lanzaboote.nixosModules.lanzaboote
+                defaults
+                ./system/configuration.nix
+              ];
+          };
         };
 
       # Standalone home-manager configuration entrypoint
