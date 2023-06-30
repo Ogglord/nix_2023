@@ -3,6 +3,8 @@ with lib;
 {
   #age.secrets.oggePassword.file = ./password.age;
 
+
+
   users.groups.ogge.gid = config.users.users.ogge.uid;
 
   users.users.ogge = {

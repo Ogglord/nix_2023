@@ -16,9 +16,9 @@ let
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF4NsULMpfxxTtSlLrvyBcfEAuBXxFgNTrvd5QDjtXZd";
       remoteBuild = true;
     };
-    "ogge@desktop" = {
+    macbook = {
       type = "homeManager";
-      hostPlatform = "x86_64-linux";
+      hostPlatform = "aarch64-darwin";
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF4NsULMpfxxTtSlLrvyBcfEAuBXxFgNTrvd5QDjtXZd";
       homeDirectory = "/home/ogge";
     };
