@@ -10,7 +10,7 @@
     # ../../hardware/bluetooth.nix
     # ../../hardware/sound-pipewire.nix
 
-    # ../../graphical
+    ../../graphical
 
     ../../users/ogge
 

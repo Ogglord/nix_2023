@@ -2,6 +2,7 @@
 
   imports = [
     ./greetd.nix
+    ./sway.nix
 
   ];
 
@@ -55,8 +56,8 @@
     enable = true;
   };
 
-  stylix.targets.plymouth.enable = false;
-  stylix.targets.gnome.enable = true;
+  #stylix.targets.plymouth.enable = false;
+  #stylix.targets.gnome.enable = true;
 
   programs.dconf.enable = true;
   xdg = {

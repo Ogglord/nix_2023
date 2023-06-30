@@ -1,5 +1,5 @@
 { agenix
-, nix
+  #, nix
 , nixpkgs
 , ...
 }:
@@ -18,6 +18,6 @@ localOverlays // {
   default = lib.composeManyExtensions ([
     agenix.overlays.default
     #deploy-rs.overlay
-    nix.overlays.default
+    #nix.overlays.default
   ] ++ (lib.attrValues localOverlays));
 }

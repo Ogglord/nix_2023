@@ -20,7 +20,7 @@ if hostType == "nixos" || hostType == "darwin" then {
 else if hostType == "homeManager" then {
   imports = [
     ./core
-    ./dev
+    #./dev
     ./modules
   ];
   programs.home-manager.enable = true;

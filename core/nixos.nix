@@ -1,10 +1,10 @@
-{ agenix, config, lib, pkgs, home-manager, impermanence, lanzaboote, nix-index-database, stylix, nix-ld, bootType, ... }:
+{ agenix, config, lib, pkgs, home-manager, impermanence, lanzaboote, nix-index-database, stylix, nix-ld, bootType, catppuccin, ... }:
 {
   imports = [
     agenix.nixosModules.age
     home-manager.nixosModules.home-manager
     #impermanence.nixosModules.impermanence
-
+    #catppuccin.nixosModules.catppuccin
     nix-ld.nixosModules.nix-ld
     nix-index-database.nixosModules.nix-index
     #stylix.nixosModules.stylix

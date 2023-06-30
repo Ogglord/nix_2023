@@ -2,6 +2,7 @@
 , home-manager
   #, nix-index-database
 , nixpkgs
+  #, catppuccin
   #, impermanence
   #, stylix
   #, templates
@@ -34,9 +35,10 @@ let
       modules = [ (genModules hostName attrs) ];
       extraSpecialArgs = {
         hostType = type;
-        #inherit impermanence nix-index-database stylix;
+        #inherit; catppuccin; #impermanence nix-index-database stylix;
       };
     };
 in
 #lib.mapAttrs genConfiguration (self.hosts.homeManager or { })
 lib.mapAttrs genConfiguration (self.hosts.homeManager)
+

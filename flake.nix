@@ -60,23 +60,26 @@
     # sway workplace renaming toolip 
     sworkstyle.url = "github:ogglord/sworkstyle";
 
-    rofi-themes2-src.url = "github:newmanls/rofi-themes-collection/master";
-    rofi-themes2-src.flake = false;
+    #rofi-themes2-src.url = "github:newmanls/rofi-themes-collection/master";
+    #rofi-themes2-src.flake = false;
 
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-      flake = false;
-    };
+    #flake-compat = {
+    #  url = "github:edolstra/flake-compat";
+    #  flake = false;
+    #};
+    #catppuccin.url = "github:Stonks3141/ctp-nix";
+    #catppuccin.inputs.nixpkgs.follows = "nixpkgs";
+    #catppuccin.inputs.flake-compat.follows = "flake-compat";
     # XXX: https://github.com/NixOS/nix/pull/8047
-    nix = {
-      url = "github:lovesegfault/nix/always-allow-substitutes-backport";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
-    };
+    #nix = {
+    #  url = "github:lovesegfault/nix/always-allow-substitutes-backport";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #  inputs.flake-compat.follows = "flake-compat";
+    #};
 
     ## dynamic linker (requires impure, for vscode remote host)
-    nix-ld.url = "github:Mic92/nix-ld";
-    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
+    #nix-ld.url = "github:Mic92/nix-ld";
+    #nix-ld.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
@@ -104,97 +107,3 @@
       nixosConfigurations = import ./nix/nixos.nix inputs;
     };
 }
-
-#   outputs = { self, lanzaboote, nixpkgs, unstable, home-manager, nur, nil, sworkstyle, nix-ld, ... }@inputs:
-#     let
-#       system = "x86_64-linux";
-#       pkgs = import nixpkgs {
-#         inherit system;
-#       };
-
-
-#       rofi-themes2 = pkgs.stdenv.mkDerivation {
-#         name = "rofi-themes2";
-#         src = builtins.filterSource
-#           (path: type: type != "directory" || baseNameOf path != ".rofi")
-#           inputs.rofi-themes2-src;
-
-#         nativeBuildInputs = [ ];
-#         # pathExists path
-
-#         installPhase = ''
-#           runHook preInstall
-#           ls -al $src
-#           mkdir -p $out
-#           cp -r $src/themes/. $out/
-#           runHook postInstall
-#         '';
-#       };
-
-#       defaults = { pkgs, ... }: {
-#         _module.args =
-#           let
-#             make-available-in-args = p: import p { inherit (pkgs.stdenv.targetPlatform) system; };
-#           in
-#           {
-#             unstable = make-available-in-args inputs.unstable;
-#             nur = make-available-in-args inputs.nur;
-#             rofi-themes2 = rofi-themes2;
-#             system = system;
-#             inputs = inputs; # removes the need for specialArgs = {inherit inputs;};
-#           };
-#       };
-#     in
-#     {
-#       nixosConfigurations =
-#         {
-#           ogge = nixpkgs.lib.nixosSystem {
-#             inherit system;
-#             #specialArgs = {inherit inputs;};
-#             modules =
-#               [
-#                 lanzaboote.nixosModules.lanzaboote
-#                 defaults
-#                 ./system/configuration.nix
-#               ];
-#           };
-#           batu = nixpkgs.lib.nixosSystem {
-#             inherit system;
-#             #specialArgs = {inherit inputs;};
-#             modules =
-#               [
-#                 nix-ld.nixosModules.nix-ld
-#                 defaults
-#                 ./seedbox/configuration.nix
-#               ];
-#           };
-#         };
-
-#       # Standalone home-manager configuration entrypoint
-#       # Available through 'home-manager --flake .#your-username@your-hostname'
-#       homeConfigurations =
-#         let
-#           nixosConfig = self.nixosConfigurations;
-#         in
-#         {
-#           "ogge@ogge" = home-manager.lib.homeManagerConfiguration {
-#             pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance   
-
-#             modules = [
-#               defaults
-#               ./home/home-manager.nix
-#             ];
-
-#           };
-#           "ogge@batu" = home-manager.lib.homeManagerConfiguration {
-#             pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance   
-
-#             modules = [
-#               defaults
-#               ./seedbox/home-manager.nix
-#             ];
-
-#           };
-#         };
-#     };
-# }

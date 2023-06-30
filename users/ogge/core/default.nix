@@ -1,6 +1,7 @@
 { hostType, pkgs, ... }: {
   # impermanence, nix-index-database, stylix,
   imports = [
+    #catppuccin.homeManagerModules.catppuccin
     #impermanence.nixosModules.home-manager.impermanence
     #nix-index-database.hmModules.nix-index
     #stylix.homeManagerModules.stylix
@@ -17,7 +18,7 @@
     # ./xdg.nix
     ./zsh.nix
   ];
-
+  #catppuccin.flavour = "latte";
   # XXX: Manually enabled in the graphic module
   dconf.enable = false;
 
@@ -26,7 +27,7 @@
     stateVersion = "23.05";
     packages = with pkgs; [
       #bandwhich
-      #colorcheck
+      #colorcheck 
       rofi-themes2
       exa
       #fd
@@ -37,17 +38,11 @@
       ripgrep
       #rsync
     ];
-    # shellAliases = {
-    #   cat = "bat";
-    #   cls = "clear";
-    #   l = "ls";
-    #   la = "ls --all";
-    #   ls = "exa --binary --header --long --classify";
-    # };
   };
 
   programs = {
-    #atuin = {
+    #atuin = { # Atuin replaces your existing shell history with a
+    # # SQLite database, and records additional context for your commands.
     #  enable = true;
     #  settings.auto_sync = false;
     #  flags = [ "--disable-up-arrow" ];
