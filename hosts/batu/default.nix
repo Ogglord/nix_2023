@@ -2,8 +2,6 @@
 #{ config, pkgs, lib, inputs, unstable, system, ... }:
 {
   imports = [
-    nixos-hardware.nixosModules.raspberry-pi-4
-
     ../../core
     #../../seedbox/env.nix
     ../../hardware/batu.nix
@@ -54,10 +52,6 @@
     pkgs.git
     pkgs.bash
   ];
-
-
-  # tailscale, of course
-  services.tailscale.enable = true;
 
   networking = {
     usePredictableInterfaceNames = false;
@@ -126,8 +120,5 @@
       ];
     }
   ];
-
-  # DEFINED IN core/nixos.nix
-  #system.stateVersion = "23.11";
 }
 
