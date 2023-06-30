@@ -2,9 +2,10 @@
 with lib;
 {
   #age.secrets.oggePassword.file = ./password.age;
-
-
-
+  #imports = optionals
+  #  config.programs.sway.enable
+  #  [ ./graphical/steam.nix ];
+  imports = [ ./graphical/steam.nix ];
   users.groups.ogge.gid = config.users.users.ogge.uid;
 
   users.users.ogge = {

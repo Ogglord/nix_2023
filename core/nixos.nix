@@ -1,4 +1,4 @@
-{ agenix, config, lib, pkgs, home-manager, impermanence, lanzaboote, nix-index-database, stylix, nix-ld, bootType, catppuccin, ... }:
+{ agenix, config, lib, pkgs, home-manager, impermanence, lanzaboote, nix-index-database, stylix, nix-ld, bootType, nix-gaming, ... }:
 {
   imports = [
     agenix.nixosModules.age

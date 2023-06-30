@@ -1,6 +1,6 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, lib, nix-gaming, ... }:
 let
-  proton-ge-custom = inputs.nix-gaming.packages.${pkgs.system}.proton-ge;
+  proton-ge-custom = nix-gaming.packages.${pkgs.system}.proton-ge;
   inherit (lib) mkOption mkIf mdDoc types literalExpression makeBinPath;
 in
 {

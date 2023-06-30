@@ -7,7 +7,7 @@
     )
     ./mpv.nix
     ./code.nix
-    ./steam.nix
+    #./steam.nix # not working in home-manager
   ];
 
   home.packages = with pkgs; [

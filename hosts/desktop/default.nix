@@ -55,6 +55,7 @@
   environment.systemPackages = [
     pkgs.git
     pkgs.bash
+    pkgs.libdrm ## for amd gpu name
   ];
 
 

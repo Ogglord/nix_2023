@@ -1,4 +1,4 @@
-{ pkgs, hostType, ... }: {
+{ pkgs, hostType, stylix, nix-gaming, libdrm ... }: {
   # nix-index-database, stylix,
   imports = [
     (
@@ -39,7 +39,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
-      inherit hostType; # impermanence nix-index-database stylix
+      inherit hostType stylix nix-gaming; # impermanence nix-index-database stylix
     };
   };
 

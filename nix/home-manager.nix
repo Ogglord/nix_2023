@@ -5,6 +5,7 @@
   #, catppuccin
   #, impermanence
 , stylix
+, nix-gaming
   #, templates
 , ...
 }:
