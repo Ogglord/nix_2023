@@ -4,7 +4,8 @@
   imports = [
     ../../core
     #../../seedbox/env.nix
-    ../../hardware/batu.nix
+    ../../hardware/desktop.nix
+    ../../hardware/secureboot.nix
     # ../../hardware/nixos-aarch64-builder
     # ../../hardware/bluetooth.nix
     # ../../hardware/sound-pipewire.nix
@@ -17,13 +18,16 @@
     # ./hyperpixel4.nix
   ];
 
-  boot.loader.grub = lib.mkIf (bootType == "legacy") {
-    enable = true;
-    device = "/dev/sda";
-    efiSupport = false;
+  networking = {
+    hostName = "ogge"; # Define your hostname.
+    useDHCP = lib.mkForce true;
+    #interfaces.enp2s0.useDHCP = true;
+    #interfaces.wlp3s0.useDHCP = true;
+    #  networking.wireless.networks.Tele2_9c594f.psk = "cd3m2y4a";  
+    networkmanager.enable = true;
   };
 
-  system.nixos.label = "anywhere";
+  system.nixos.label = "hardcore";
   nixpkgs.config.allowUnfree = true;
 
   nix.settings = {
@@ -53,29 +57,7 @@
     pkgs.bash
   ];
 
-  networking = {
-    usePredictableInterfaceNames = false;
-    hostName = "batu";
-    ## configure network
-    firewall.enable = false;
-    interfaces.eth0.ipv4.addresses = [{
-      address = "194.87.149.71";
-      prefixLength = 26;
-    }];
-    defaultGateway = "194.87.149.65";
-    nameservers = [ "127.0.0.53" ];
 
-  };
-
-  services.resolved = {
-    # enable dns server          
-    enable = true;
-    fallbackDns = [ "1.1.1.1" "8.8.8.8" ];
-  };
-  ## enable SSH Daemon
-  services.sshd.enable = true;
-  services.openssh.settings.PermitRootLogin = "no";
-  services.openssh.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
@@ -92,9 +74,6 @@
 
   # List services that you want to enable:
   programs.zsh.enable = true;
-  ## required for vs code remote
-  programs.nix-ld.dev.enable = true;
-  #programs.nix-ld.enable = true;
 
 
   security.sudo.extraRules = [

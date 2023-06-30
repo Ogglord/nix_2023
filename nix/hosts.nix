@@ -1,9 +1,10 @@
 let
   hosts = {
-    ogge = {
+    desktop = {
       type = "nixos"; # nixos/homeManager
       address = "100.69.178.40";
       hostPlatform = "x86_64-linux";
+      bootType = "secureboot";
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF4NsULMpfxxTtSlLrvyBcfEAuBXxFgNTrvd5QDjtXZd";
       remoteBuild = false;
     };
@@ -11,15 +12,17 @@ let
       type = "nixos";
       address = "194.87.149.71";
       hostPlatform = "x86_64-linux";
+      bootType = "legacy";
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF4NsULMpfxxTtSlLrvyBcfEAuBXxFgNTrvd5QDjtXZd";
       remoteBuild = true;
     };
-    # insurely = {
-    #   type = "homeManager";
-    #   hostPlatform = "aarch64-darwin";
-    #   homeDirectory = "/home/ogge";
-    # };
-   
+    "ogge@desktop" = {
+      type = "homeManager";
+      hostPlatform = "x86_64-linux";
+      pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF4NsULMpfxxTtSlLrvyBcfEAuBXxFgNTrvd5QDjtXZd";
+      homeDirectory = "/home/ogge";
+    };
+
   };
 
   inherit (builtins) attrNames concatMap listToAttrs;
@@ -49,12 +52,27 @@ let
     in
     removeEmptyAttrs (listToAttrs (map typeHostGroup types));
 
+  genBootTypeGroups = hosts:
+    let
+      bootTypes = [ "legacy" "secureboot" "default" ];
+      bootTypeHostGroup = name: {
+        inherit name;
+        value = filterAttrs
+          (_: host: (if builtins.hasAttr "bootType" host
+          then host.bootType
+          else "default") == name)
+          hosts;
+      };
+    in
+    removeEmptyAttrs (listToAttrs (map bootTypeHostGroup bootTypes));
+
   genHostGroups = hosts:
     let
       all = hosts;
       systemGroups = genSystemGroups all;
       typeGroups = genTypeGroups all;
+      bootTypeGroups = genBootTypeGroups all;
     in
-    all // systemGroups // typeGroups // { inherit all; };
+    all // systemGroups // typeGroups // bootTypeGroups // { inherit all; };
 in
 genHostGroups hosts

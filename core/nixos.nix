@@ -1,24 +1,24 @@
-{ agenix, config, lib, pkgs, home-manager, impermanence, lanzaboote, nix-index-database, stylix, nix-ld, ... }:
+{ agenix, config, lib, pkgs, home-manager, impermanence, lanzaboote, nix-index-database, stylix, nix-ld, bootType, ... }:
 {
   imports = [
     agenix.nixosModules.age
     home-manager.nixosModules.home-manager
     #impermanence.nixosModules.impermanence
-    lanzaboote.nixosModules.lanzaboote
+
     nix-ld.nixosModules.nix-ld
-    #nix-index-database.nixosModules.nix-index
+    nix-index-database.nixosModules.nix-index
     #stylix.nixosModules.stylix
     #./resolved.nix
     #./tmux.nix
     #./xdg.nix
-  ];
+  ] ++ lib.optionals (bootType == "secureboot") [ lanzaboote.nixosModules.lanzaboote ];
 
   boot.kernelParams = [ "log_buf_len=10M" ];
 
-#   documentation = {
-#     dev.enable = true;
-#     man.generateCaches = true;
-#   };
+  #   documentation = {
+  #     dev.enable = true;
+  #     man.generateCaches = true;
+  #   };
 
   i18n.defaultLocale = "en_US.UTF-8";
 

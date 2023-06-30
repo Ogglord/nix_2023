@@ -1,10 +1,10 @@
 { self
 , home-manager
-#, nix-index-database
+  #, nix-index-database
 , nixpkgs
-#, impermanence
-#, stylix
-#, templates
+  #, impermanence
+  #, stylix
+  #, templates
 , ...
 }:
 let
@@ -12,7 +12,7 @@ let
 
   genModules = hostName: { homeDirectory, ... }:
     { config, pkgs, ... }: {
-      imports = [ (../hosts + "/${hostName}") ];      
+      imports = [ (../hosts + "/${hostName}") ];
 
       home = {
         inherit homeDirectory;
@@ -38,4 +38,5 @@ let
       };
     };
 in
-lib.mapAttrs genConfiguration (self.hosts.homeManager or { })
+#lib.mapAttrs genConfiguration (self.hosts.homeManager or { })
+lib.mapAttrs genConfiguration (self.hosts.homeManager)

@@ -1,3 +1,5 @@
 result
 result-*
 *.code-workspace
+old/
+seedbox/

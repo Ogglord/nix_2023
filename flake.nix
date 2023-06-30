@@ -31,7 +31,10 @@
     # secure boot package
     lanzaboote.url = "github:nix-community/lanzaboote";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -72,13 +75,13 @@
     };
 
     ## dynamic linker (requires impure, for vscode remote host)
-    nix-ld.url = "github:Mic92/nix-ld";    
+    nix-ld.url = "github:Mic92/nix-ld";
     nix-ld.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-   outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
-      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ]; # "x86_64-darwin" 
+      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "x86_64-darwin" ]; # 
     in
     {
       hosts = import ./nix/hosts.nix;
@@ -96,7 +99,7 @@
       packages = forAllSystems (import ./nix/packages.nix inputs);
 
       #deploy = import ./nix/deploy.nix inputs;
-      #darwinConfigurations = import ./nix/darwin.nix inputs;
+      darwinConfigurations = import ./nix/darwin.nix inputs;
       homeConfigurations = import ./nix/home-manager.nix inputs;
       nixosConfigurations = import ./nix/nixos.nix inputs;
     };

@@ -2,6 +2,7 @@
 , home-manager
 , agenix
 , lanzaboote
+, nix-index-database
 , nixos-hardware
 , nixpkgs
 , nix-ld
@@ -10,7 +11,7 @@
 let
   inherit (nixpkgs) lib;
 
-  genConfiguration = hostname: { address, hostPlatform, type, ... }:
+  genConfiguration = hostname: { address, hostPlatform, type, bootType, ... }:
     lib.nixosSystem {
       modules = [
         (../hosts + "/${hostname}")
@@ -21,7 +22,8 @@ let
       specialArgs = {
         hostAddress = address;
         hostType = type;
-        inherit agenix home-manager lanzaboote nixos-hardware nix-ld; /*nix-index-database stylix impermanence*/
+        bootType = bootType;
+        inherit agenix home-manager lanzaboote nix-index-database nixos-hardware nix-ld; /*nix-index-database stylix impermanence*/
       };
     };
 in

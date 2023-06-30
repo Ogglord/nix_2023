@@ -13,6 +13,36 @@ in
   ## sworkstyle config - map applications to workspace icons in sway
   home.file.".config/sworkstyle/config.toml".source = ./sworkstyle_config.toml;
 
+  home.packages = with pkgs; [
+    pavucontrol #sound control
+    mako # notification daemon
+    swaylock # lockscreen
+    swayidle
+    sworkstyle #workspace renaming utility
+    breeze-icons
+    breeze-gtk
+    wl-clipboard
+    wl-gammactl
+
+    # xwayland # for legacy apps
+    # waybar # configured as separate module
+    kanshi # autorandr
+    # dmenu
+    # wofi # replacement for dmenu
+    brightnessctl
+    gammastep # make it red at night!
+    # sway-contrib.grimshot # screenshots
+    # swayr #Swayr, a window-switcher & more for sway
+    #mate.caja
+    # gnome.nautilus # file explorer
+    evince # document viewer (pdf etc.)
+    # https://discourse.nixos.org/t/some-lose-ends-for-sway-on-nixos-which-we-should-fix/17728/2?u=senorsmile
+    gnome3.adwaita-icon-theme # default gnome cursors
+    glib # gsettings
+    dracula-theme # gtk theme (dark)
+    #gnome.networkmanagerapplet
+  ];
+
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
