@@ -39,6 +39,6 @@ let
       };
     };
 in
-#lib.mapAttrs genConfiguration (self.hosts.homeManager or { })
-lib.mapAttrs genConfiguration (self.hosts.homeManager)
+lib.mapAttrs genConfiguration (self.hosts.homeManager or { })
+#lib.mapAttrs genConfiguration (self.hosts.homeManager)
 

@@ -5,7 +5,7 @@
 , nix-index-database
 , nixos-hardware
 , nixpkgs
-  #, nix-ld
+, nix-ld
   #, catppuccin
 , ...
 }:
@@ -24,7 +24,7 @@ let
         hostAddress = address;
         hostType = type;
         bootType = bootType;
-        inherit agenix home-manager lanzaboote nix-index-database nixos-hardware; /* nix-ld catppuccin nix-index-database stylix impermanence*/
+        inherit agenix home-manager lanzaboote nix-index-database nixos-hardware nix-ld; /* nix-ld catppuccin nix-index-database stylix impermanence*/
       };
     };
 in

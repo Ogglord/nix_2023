@@ -67,8 +67,8 @@
     #  url = "github:edolstra/flake-compat";
     #  flake = false;
     #};
-    #catppuccin.url = "github:Stonks3141/ctp-nix";
-    #catppuccin.inputs.nixpkgs.follows = "nixpkgs";
+    catppuccin.url = "github:Stonks3141/ctp-nix";
+    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
     #catppuccin.inputs.flake-compat.follows = "flake-compat";
     # XXX: https://github.com/NixOS/nix/pull/8047
     #nix = {
@@ -78,8 +78,8 @@
     #};
 
     ## dynamic linker (requires impure, for vscode remote host)
-    #nix-ld.url = "github:Mic92/nix-ld";
-    #nix-ld.inputs.nixpkgs.follows = "nixpkgs";
+    nix-ld.url = "github:Mic92/nix-ld";
+    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
