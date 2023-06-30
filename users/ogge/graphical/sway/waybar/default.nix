@@ -4,7 +4,7 @@
 
   programs.waybar = {
     enable = true;
-    style = ../static/waybar_style.css;
+    #style = ../static/waybar_style.css;
     systemd.enable = true;
     systemd.target = "sway-session.target";
 

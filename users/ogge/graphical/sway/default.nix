@@ -12,6 +12,8 @@
     ./waybar
   ];
 
+
+
   home = {
     packages = with pkgs; [
       grim ## screenshots
@@ -21,7 +23,7 @@
       swayidle
       # sworkstyle
       wl-clipboard
-      wl-gammactl
+      #wl-gammactl
       xwayland
     ];
   };

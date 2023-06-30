@@ -6,10 +6,18 @@
       else throw "Unknown hostType '${hostType}' for users/ogge/graphical"
     )
     ./mpv.nix
+    ./code.nix
+    ./steam.nix
   ];
 
   home.packages = with pkgs; [
     pavucontrol #sound control
+    brave
+    gopass
+    libsecret
+    polkit
+    polkit_gnome
+    vulkan-tools
     #breeze-icons
     #breeze-gtk
     #wl-clipboard

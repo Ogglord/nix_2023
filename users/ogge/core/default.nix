@@ -1,10 +1,13 @@
-{ hostType, pkgs, ... }: {
+{ hostType, pkgs, stylix, ... }: {
   # impermanence, nix-index-database, stylix,
   imports = [
     #catppuccin.homeManagerModules.catppuccin
     #impermanence.nixosModules.home-manager.impermanence
     #nix-index-database.hmModules.nix-index
     #stylix.homeManagerModules.stylix
+    # {
+    #   stylix.image = ./wallpaper.jpg;
+    # }
 
     # ./bash.nix
     # ./btop.nix
@@ -21,6 +24,7 @@
   #catppuccin.flavour = "latte";
   # XXX: Manually enabled in the graphic module
   dconf.enable = false;
+
 
   home = {
     username = "ogge";

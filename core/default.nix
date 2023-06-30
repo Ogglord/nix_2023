@@ -24,6 +24,14 @@
       #man-pages
       #neovim
       #rsync
+      tree
+      ncdu
+      neofetch
+      fortune
+      jq
+      micro
+      nil # NI Language interpreter
+      nixpkgs-fmt
     ];
   };
 

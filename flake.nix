@@ -6,11 +6,13 @@
       "https://cache.nixos.org"
       "https://nix-config.cachix.org"
       "https://nix-community.cachix.org"
+      "https://nixpkgs-wayland.cachix.org"
     ];
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-config.cachix.org-1:Vd6raEuldeIZpttVQfrUbLvXJHzzzkS0pezXCVVjDG4="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
     ];
   };
 
@@ -37,17 +39,17 @@
     };
     # nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    #unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     #user repositories (not used any yet)
     nur.url = "github:nix-community/nur";
     # NIx Language server
     nil = {
       url = "github:oxalica/nil";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # dev environments on the fly
-    devenv.url = "github:cachix/devenv/latest";
+    #devenv.url = "github:cachix/devenv/latest";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
@@ -62,13 +64,16 @@
 
     #rofi-themes2-src.url = "github:newmanls/rofi-themes-collection/master";
     #rofi-themes2-src.flake = false;
+    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
 
+    # only needed if you use as a package set:
+    nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
     #flake-compat = {
     #  url = "github:edolstra/flake-compat";
     #  flake = false;
     #};
-    catppuccin.url = "github:Stonks3141/ctp-nix";
-    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
+    #catppuccin.url = "github:Stonks3141/ctp-nix";
+    #catppuccin.inputs.nixpkgs.follows = "nixpkgs";
     #catppuccin.inputs.flake-compat.follows = "flake-compat";
     # XXX: https://github.com/NixOS/nix/pull/8047
     #nix = {
@@ -76,7 +81,8 @@
     #  inputs.nixpkgs.follows = "nixpkgs";
     #  inputs.flake-compat.follows = "flake-compat";
     #};
-
+    ## themes for lots of apps
+    stylix.url = "github:danth/stylix";
     ## dynamic linker (requires impure, for vscode remote host)
     nix-ld.url = "github:Mic92/nix-ld";
     nix-ld.inputs.nixpkgs.follows = "nixpkgs";

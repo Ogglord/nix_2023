@@ -9,6 +9,9 @@ let
   '';
 in
 {
+
+  environment.systemPackages = [ pkgs.greetd.tuigreet ];
+
   services.greetd = {
     enable = true;
     restart = false;

@@ -6,6 +6,8 @@ let
   menu = "rofi -show drun -disable-history";
   #"${modifier}+d" = "exec rofi -show drun -disable-history";
   #"${modifier}+Shift+d" = "exec rofi -show run -disable-history";
+  applyStylix = true;
+
 in
 {
   ## shutdown menu script
@@ -24,7 +26,7 @@ in
 
         workspaceAutoBackAndForth = true;
 
-        fonts = {
+        fonts = lib.optionalAttrs (!applyStylix) {
           names = [ "Ubuntu" ];
           size = 12.0;
         };

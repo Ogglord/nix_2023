@@ -1,8 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  applyStylix = true;
+in
 {
+  stylix.targets.dunst.enable = applyStylix;
+
   services.dunst = {
     enable = true;
-    settings = {
+    settings = lib.optionalAttrs (!applyStylix) {
       global = {
         width = 300;
         height = 300;

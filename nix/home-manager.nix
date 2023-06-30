@@ -4,7 +4,7 @@
 , nixpkgs
   #, catppuccin
   #, impermanence
-  #, stylix
+, stylix
   #, templates
 , ...
 }:

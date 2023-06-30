@@ -10,9 +10,9 @@
     # ../../hardware/bluetooth.nix
     # ../../hardware/sound-pipewire.nix
 
-    #../../graphical
+    ../../graphical
 
-    #../../users/ogge
+    ../../users/ogge
 
     # ./sway.nix
     # ./hyperpixel4.nix

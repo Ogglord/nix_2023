@@ -1,6 +1,7 @@
 { agenix
   #q, nix
 , nixpkgs
+, nixpkgs-wayland
 , ...
 }:
 
@@ -18,6 +19,7 @@ localOverlays // {
   default = lib.composeManyExtensions
     ([
       agenix.overlays.default
+      nixpkgs-wayland.overlay
       #deploy-rs.overlay
       #nix.overlays.default
     ] ++ (lib.attrValues localOverlays));
