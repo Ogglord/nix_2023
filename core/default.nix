@@ -1,4 +1,4 @@
-{ pkgs, hostType, stylix, nix-gaming, libdrm ... }: {
+{ pkgs, hostType, stylix, nix-gaming, ... }: {
   # nix-index-database, stylix,
   imports = [
     (
