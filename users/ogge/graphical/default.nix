@@ -7,6 +7,7 @@
     )
     ./mpv.nix
     ./code.nix
+    ./mangohud
     #./steam.nix # not working in home-manager
   ];
 
@@ -18,6 +19,7 @@
     polkit
     polkit_gnome
     vulkan-tools
+    cinnamon.nemo
     #breeze-icons
     #breeze-gtk
     #wl-clipboard

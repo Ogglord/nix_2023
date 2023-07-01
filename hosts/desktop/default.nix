@@ -8,7 +8,7 @@
     ../../hardware/secureboot.nix
     # ../../hardware/nixos-aarch64-builder
     # ../../hardware/bluetooth.nix
-    # ../../hardware/sound-pipewire.nix
+    ../../hardware/sound.nix
 
     ../../graphical
 
@@ -19,7 +19,7 @@
   ];
 
   networking = {
-    hostName = "ogge"; # Define your hostname.
+    hostName = "desktop"; # Define your hostname.
     useDHCP = lib.mkForce true;
     #interfaces.enp2s0.useDHCP = true;
     #interfaces.wlp3s0.useDHCP = true;

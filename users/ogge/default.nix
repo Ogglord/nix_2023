@@ -1,4 +1,4 @@
-{ config, hostType, lib, ... }:
+{ config, hostType, lib, sworkstyle, ... }:
 if hostType == "nixos" || hostType == "darwin" then {
   imports = [
     (

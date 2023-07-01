@@ -1,7 +1,7 @@
-{ lib, pkgs, ... }:
-#let
-#  sworkstyle = inputs.sworkstyle.packages.${pkgs.system}.sworkstyle;
-#in
+{ lib, pkgs, sworkstyle, ... }:
+let
+  sworkstyle-pkg = sworkstyle.packages.${pkgs.system}.sworkstyle;
+in
 {
   imports = [
     ./tessen.nix
@@ -21,12 +21,22 @@
       slurp ## select part of screen (works with grim)
       swaybg ## change wallpaper
       swayidle
-      # sworkstyle
+      sworkstyle
+      sworkstyle-pkg
       wl-clipboard
       #wl-gammactl
       xwayland
     ];
   };
+
+  ## force brave to wayland mode
+  home.file.".config/brave-flags.conf".text = ''
+    --enable-features=UseOzonePlatform
+    --ozone-platform=wayland
+  '';
+  ## copy our screenshot script
+  home.file."/.local/bin/screenshot".file = ./static/screenshot.sh;
+  home.file."/.local/bin/screenshot".executable = true;
 
   programs = {
     swaylock = {

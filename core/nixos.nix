@@ -14,10 +14,11 @@
     #./xdg.nix
   ] ++ lib.optionals (bootType == "secureboot") [ lanzaboote.nixosModules.lanzaboote ];
 
-  stylix.image = pkgs.fetchurl {
-    url = "https://www.pixelstalk.net/wp-content/uploads/2016/05/Epic-Anime-Awesome-Wallpapers.jpg";
-    sha256 = "enQo3wqhgf0FEPHj2coOCvo7DuZv+x5rL/WIo4qPI50=";
-  };
+  # stylix.image = pkgs.fetchurl {
+  #   url = "https://www.pixelstalk.net/wp-content/uploads/2016/05/Epic-Anime-Awesome-Wallpapers.jpg";
+  #   sha256 = "enQo3wqhgf0FEPHj2coOCvo7DuZv+x5rL/WIo4qPI50=";
+  # };
+  stylix.image = ./wallpaper2.jpg;
 
   boot.kernelParams = [ "log_buf_len=10M" ];
 
@@ -77,5 +78,5 @@
     services.tailscaled.after = [ "network-online.target" "systemd-resolved.service" ];
   };
 
-  users.mutableUsers = false;
+  users.mutableUsers = true; ## warning set to false will wipe users and passwords unlet set explicitly!
 }

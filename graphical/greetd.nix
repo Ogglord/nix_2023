@@ -5,6 +5,12 @@ let
     export XDG_SESSION_DESKTOP=sway
     export XDG_CURRENT_DESKTOP=sway
 
+    # more wayland stuff
+    export MOZ_ENABLE_WAYLAND=1
+    export QT_QPA_PLATFORM=wayland
+    export SDL_VIDEODRIVER=wayland
+    export _JAVA_AWT_WM_NONREPARENTING=1
+
     systemd-run --user --scope --collect --quiet --unit=sway systemd-cat --identifier=sway ${pkgs.sway}/bin/sway $@
   '';
 in

@@ -1,3 +1,4 @@
+# not used - 
 { hostType, lib, ... }: {
   nix = {
     settings = {
