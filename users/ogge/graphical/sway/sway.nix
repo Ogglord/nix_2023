@@ -12,6 +12,7 @@ in
 {
   ## shutdown menu script
   home.file.".local/bin/shutdownmenu.sh".source = ./static/shutdownmenu.sh;
+  home.file.".local/bin/shutdownmenu.sh".executable = true;
   ## sworkstyle config - map applications to workspace icons in sway
   home.file.".config/sworkstyle/config.toml".source = ./static/sworkstyle_config.toml;
 
@@ -68,6 +69,8 @@ in
             "${mod}+q" = "kill";
             "${mod}+space" = "exec ${menu}";
             "${mod}+p" = "exec tessen"; ## pwd manager
+            "Print" = "exec /home/ogge/.local/bin/screenshot"; ## print screen
+
             #  	    "${modifier}+Shift+q" = "kill";
             #"${modifier}+d" = "exec ${pkgs.dmenu}/bin/dmenu_path | ${pkgs.dmenu}/bin/dmenu | ${pkgs.findutils}/bin/xargs swaymsg exec --";
             "${mod}+Shift+e" = "exec /home/ogge/.local/bin/shutdownmenu.sh";

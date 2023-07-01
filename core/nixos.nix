@@ -11,7 +11,7 @@
     #stylix.nixosModules.stylix
     #./resolved.nix
     #./tmux.nix
-    #./xdg.nix
+    ./xdg.nix
   ] ++ lib.optionals (bootType == "secureboot") [ lanzaboote.nixosModules.lanzaboote ];
 
   # stylix.image = pkgs.fetchurl {

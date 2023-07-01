@@ -35,8 +35,8 @@ in
     --ozone-platform=wayland
   '';
   ## copy our screenshot script
-  home.file."/.local/bin/screenshot".file = ./static/screenshot.sh;
-  home.file."/.local/bin/screenshot".executable = true;
+  home.file.".local/bin/screenshot".source = ./static/screenshot.sh;
+  home.file.".local/bin/screenshot".executable = true;
 
   programs = {
     swaylock = {

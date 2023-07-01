@@ -15,6 +15,10 @@ if hostType == "nixos" || hostType == "darwin" then {
     ];
     home.username = config.users.users.ogge.name;
     home.uid = config.users.users.ogge.uid;
+    home.sessionPath = [
+      "$HOME/.cargo/bin"
+      "$HOME/.local/bin"
+    ];
   };
 }
 else if hostType == "homeManager" then {

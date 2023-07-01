@@ -1,4 +1,10 @@
+{ pkgs, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    xdg-user-dirs
+  ];
+
+  # TODO: migrate to home-manager..xdg.userDirs.createDirectories instead
   environment.etc."xdg/user-dirs.defaults".text = ''
     DESKTOP=tmp
     DOWNLOAD=tmp
