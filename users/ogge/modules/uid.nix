@@ -7,6 +7,7 @@ with lib;
       example = 1000;
       description = "The user's uid.";
     };
+
   };
   config = {
     assertions = [{

@@ -61,6 +61,12 @@
     # Local directories (for absolute paths you can omit 'path:')
     # sway workplace renaming toolip 
     sworkstyle.url = "github:ogglord/sworkstyle";
+    nix-vscode-extensions =
+      {
+        url = "github:nix-community/nix-vscode-extensions";
+        inputs.flake-utils.follows = "flake-utils";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
 
     #rofi-themes2-src.url = "github:newmanls/rofi-themes-collection/master";
     #rofi-themes2-src.flake = false;

@@ -9,6 +9,7 @@
 , stylix
 , nix-gaming
 , sworkstyle
+, nix-vscode-extensions
 , ...
 }:
 let
@@ -26,7 +27,7 @@ let
         hostAddress = address;
         hostType = type;
         bootType = bootType;
-        inherit agenix home-manager lanzaboote nix-index-database nixos-hardware nix-ld stylix nix-gaming sworkstyle; /* nix-ld catppuccin nix-index-database stylix impermanence*/
+        inherit agenix home-manager lanzaboote nix-index-database nixos-hardware nix-ld stylix nix-gaming sworkstyle nix-vscode-extensions; /* nix-ld catppuccin nix-index-database stylix impermanence*/
       };
     };
 in

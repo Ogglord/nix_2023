@@ -16,6 +16,7 @@
     # ./htop.nix
     # ./neovim
     # ./ssh.nix
+    ./micro.nix
     ./starship.nix
     # ./tmux.nix
     # ./xdg.nix

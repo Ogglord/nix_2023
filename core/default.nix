@@ -1,4 +1,4 @@
-{ pkgs, hostType, stylix, nix-gaming, sworkstyle, ... }: {
+{ pkgs, hostType, stylix, nix-gaming, sworkstyle, nix-vscode-extensions, ... }: {
   # nix-index-database, stylix,
   imports = [
     (
@@ -39,7 +39,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
-      inherit hostType stylix nix-gaming sworkstyle; # impermanence nix-index-database stylix
+      inherit hostType stylix nix-gaming sworkstyle nix-vscode-extensions; # impermanence nix-index-database stylix
     };
   };
 

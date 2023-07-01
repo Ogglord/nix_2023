@@ -1,4 +1,4 @@
-{ config, hostType, lib, sworkstyle, ... }:
+{ config, hostType, lib, sworkstyle, nix-vscode-extensions, ... }:
 if hostType == "nixos" || hostType == "darwin" then {
   imports = [
     (
