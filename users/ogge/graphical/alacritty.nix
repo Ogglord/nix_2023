@@ -104,9 +104,10 @@ with lib; {
       #};
       font = {
         normal = {
-          family = "Hack Nerd Font Mono";
+          family = "Iosevka Nerd Font Mono";
           style = "Regular";
         };
+        size = "10";
       };
       shell = {
         program = "${pkgs.zsh}/bin/zsh";

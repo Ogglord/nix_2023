@@ -7,7 +7,8 @@
     )
     ./mpv.nix
     ./code.nix
-    ./mangohud
+    ./alacritty.nix
+    ./mangohud.nix
     #./steam.nix # not working in home-manager
   ];
 

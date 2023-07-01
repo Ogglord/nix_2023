@@ -10,11 +10,11 @@
       noto-fonts-cjk-serif
       noto-fonts-emoji
       unifont
-      (nerdfonts.override { fonts = [ "Hack" ]; })
-      meslo-lgs-nf
+      (nerdfonts.override { fonts = [ "Hack" "Iosevka" ]; })
+      #meslo-lgs-nf
       #roboto
-      #ubuntu_font_family
-      #ibm-plex
+      ubuntu_font_family
+      ibm-plex
     ];
   } // lib.optionalAttrs (hostType == "nixos") {
     enableDefaultFonts = false;
@@ -47,22 +47,22 @@
     };
   };
 
-  # stylix.fonts = {
-  #   sansSerif = {
-  #     package = pkgs.ibm-plex;
-  #     name = "IBM Plex Sans";
-  #   };
-  #   serif = {
-  #     package = pkgs.dejavu_fonts;
-  #     name = "IBM Plex Serif";
-  #   };
-  #   monospace = {
-  #     package = pkgs.nerdfonts.override { fonts = [ "Hack" ]; };
-  #     name = "Hack Nerd Font";
-  #   };
-  #   emoji = {
-  #     package = pkgs.noto-fonts-emoji;
-  #     name = "Noto Color Emoji";
-  #   };
-  # };
+  stylix.fonts = {
+    sansSerif = {
+      package = pkgs.ibm-plex;
+      name = "IBM Plex Sans";
+    };
+    serif = {
+      package = pkgs.dejavu_fonts;
+      name = "IBM Plex Serif";
+    };
+    monospace = {
+      package = pkgs.nerdfonts.override { fonts = [ "Hack" ]; };
+      name = "Hack Nerd Font";
+    };
+    emoji = {
+      package = pkgs.noto-fonts-emoji;
+      name = "Noto Color Emoji";
+    };
+  };
 }

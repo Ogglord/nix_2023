@@ -15,6 +15,7 @@
     ];
 
     userSettings = {
+      "editor.formatOnSave" = true;
       "window.zoomLevel" = 1;
       "workbench.colorTheme" = "Dracula";
       "nix.enableLanguageServer" = true;
@@ -29,12 +30,14 @@
           };
         };
       };
-      "editor.formatOnSave" = true;
+
       "git.enableSmartCommit" = true;
       "git.confirmSync" = false;
       "window.titleBarStyle" = "custom";
       "workbench.tree.indent" = 22;
+      "terminal.integrated.copyOnSelection" = true;
     };
+
 
     globalSnippets = {
       nix = {
@@ -57,3 +60,4 @@
   };
 
 }
+
