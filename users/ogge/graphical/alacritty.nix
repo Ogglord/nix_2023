@@ -104,7 +104,7 @@ with lib; {
       #};
       font = {
         normal = {
-          family = "IosevkaTerm Nerd Font Mono";
+          family = "Hack Nerd Font Mono";
           style = "Regular";
         };
       };
