@@ -4,7 +4,7 @@
   #, impermanence
 , nix-index-database
 , nixpkgs
-  #, stylix
+, stylix
   #, templates
 , ...
 }:
@@ -27,7 +27,7 @@ let
       ];
       specialArgs = {
         hostType = type;
-        inherit home-manager nix-index-database; # stylix
+        inherit home-manager nix-index-database stylix; # 
       };
     };
 in

@@ -9,7 +9,7 @@ in
     ./rofi.nix
     ./sway.nix
     ./kanshi.nix
-    ./waybar
+    ./waybar.nix
   ];
 
 

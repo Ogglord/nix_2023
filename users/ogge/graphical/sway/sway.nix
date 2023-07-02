@@ -27,10 +27,13 @@ in
 
         workspaceAutoBackAndForth = true;
 
-        fonts = lib.optionalAttrs (!applyStylix) {
-          names = [ "Ubuntu" ];
-          size = 12.0;
-        };
+
+        fonts.size = lib.mkForce 14.0;
+
+        # fonts = {
+        #   names = [ "Ubuntu" ];
+        #   size = 12.0;
+        # };
         bars = [ ];
         #  bars = [{
         #    fonts.size = 14.0;

@@ -19,7 +19,8 @@ Hosts are defined as types of either `nixos`, `darwin` or `home-manager` (standa
 ## Quick locations
 
 System packages: [/core/default.nix](/core/default.nix)\
-User packages: [/users/[user]/core/default.nix](/users/ogge/core/default.nix)
+User packages CLI: [/users/[user]/core/default.nix](/users/ogge/core/default.nix)\
+User packages GUI: [/users/[user]/graphical/default.nix](/users/ogge/graphical/default.nix)
 
 
 

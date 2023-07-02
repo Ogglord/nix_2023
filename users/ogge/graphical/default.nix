@@ -9,13 +9,15 @@
     ./code.nix
     ./alacritty.nix
     ./mangohud.nix
+    ./stylix.nix
     #./steam.nix # not working in home-manager
   ];
 
 
 
   home.packages = with pkgs; [
-    pavucontrol #sound control
+    helvum
+    pavucontrol
     brave
     gopass
     libsecret
