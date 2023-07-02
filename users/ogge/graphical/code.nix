@@ -27,7 +27,7 @@ in
 
     userSettings = {
       "editor.formatOnSave" = true;
-      "window.zoomLevel" = 1;
+      "window.zoomLevel" = 0;
       "workbench.colorTheme" = "Dracula";
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil";
@@ -41,7 +41,8 @@ in
           };
         };
       };
-      "editor.fontSize" = 12;
+      "editor.fontSize" = 15;
+      "editor.fontFamily" = "Hack Nerd Font Mono";
       "git.enableSmartCommit" = true;
       "git.confirmSync" = false;
       "window.titleBarStyle" = "custom";
@@ -50,7 +51,8 @@ in
       "workbench.iconTheme" = "vscode-icons";
       #"workbench.iconTheme" = "eq-material-theme-icons-ocean"; ## darker folders
       "terminal.integrated.copyOnSelection" = true;
-      "terminal.integrated.fontSize" = 10;
+      "terminal.integrated.fontSize" = 12;
+      "terminal.integrated.fontFamily" = "Hack Nerd Font Mono";
     };
 
 
