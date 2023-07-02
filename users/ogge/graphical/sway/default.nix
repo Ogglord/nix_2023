@@ -29,6 +29,7 @@ in
     ];
   };
 
+  home.sessionVariables.NIXOS_OZONE_WL = "1";
   ## force brave to wayland mode
   home.file.".config/brave-flags.conf".text = ''
     --enable-features=UseOzonePlatform

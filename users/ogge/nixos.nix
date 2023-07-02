@@ -42,6 +42,8 @@ with lib;
     ] ++ optionals config.services.xserver.windowManager.i3.enable [
       ./graphical
       ./graphical/i3
+    ] ++ [
+      ./xdg.nix
     ];
   };
 }

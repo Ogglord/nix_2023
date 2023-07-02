@@ -3,6 +3,11 @@ let
   extensions = nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
 in
 {
+  home.file.".config/code-flags.conf".enable = true; ## skip for now
+  home.file.".config/code-flags.conf".text = ''
+    --enable-features=UseOzonePlatform
+    --ozone-platform=wayland
+  '';
 
   programs.vscode = {
     enable = true;
@@ -11,13 +16,11 @@ in
     #package = pkgs.vscodium;
     extensions = with pkgs.vscode-extensions; [
       dracula-theme.theme-dracula
-      #bbenoist.nix
       jnoortheen.nix-ide
       yzhang.markdown-all-in-one
       bungcip.better-toml
       tyriar.sort-lines
       ms-vscode-remote.remote-ssh
-      piousdeer.adwaita-theme
       extensions.equinusocio.vsc-material-theme-icons
       vscode-icons-team.vscode-icons
     ];
@@ -47,6 +50,7 @@ in
       "workbench.iconTheme" = "vscode-icons";
       #"workbench.iconTheme" = "eq-material-theme-icons-ocean"; ## darker folders
       "terminal.integrated.copyOnSelection" = true;
+      "terminal.integrated.fontSize" = 10;
     };
 
 

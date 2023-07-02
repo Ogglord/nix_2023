@@ -76,8 +76,12 @@ in
             "${mod}+Shift+e" = "exec /home/ogge/.local/bin/shutdownmenu.sh";
 
             "Mod1+tab" = "workspace next_on_output";
-            "${mod}+tab" = "workspace next_on_output";
+            "${mod}+tab" = "workspace back_and_forth";
             "${mod}+Shift+tab" = "workspace prev_on_output";
+            "${mod}+Shift+c" = "reload";
+            "${mod}+Shift+r" = "reload";
+            "Scroll_Lock" = ''exec alacritty -t "Building system..." --class floating -e "$(which zsh)" -c "pushd /home/ogge/nix;pwd;sudo nixos-rebuild build --flake '.#';popd;echo Closing in 3;sleep 1;echo 2;sleep 1;echo 1;sleep 1;exit"'';
+            "Pause" = ''exec alacritty -t "Switching system..." --class floating -e "$(which zsh)" -c "pushd /home/ogge/nix;pwd;sudo nixos-rebuild switch --flake '.#';popd;echo Closing in 3;sleep 1;echo 2;sleep 1;echo 1;sleep 1;exit"'';
 
             "${mod}+f" = "floating toggle";
 
@@ -127,6 +131,9 @@ in
           }
           {
             app_id = "pavucontrol";
+          }
+          {
+            app_id = "floating";
           }
           {
             window_role = "pop-up";
@@ -187,12 +194,12 @@ in
 
 
           {
-            command = "systemctl --user restart waybar ";
+            command = "systemctl --user reload-or-restart waybar ";
             always = true;
           }
 
           {
-            command = "systemctl --user restart kanshi ";
+            command = "systemctl --user reload-or-restart kanshi ";
             always = true;
           }
 
@@ -219,7 +226,7 @@ in
           {
             command = ''--no-startup-id
                   {
-                    swaymsg "workspace 1; exec ${term};"
+                    swaymsg "workspace number 1; exec ${term};"
                   }
                 ''
             ;
@@ -241,6 +248,8 @@ in
           "number 2" = [{ app_id = "brave-browser"; }];
           "number 3" = [
             { app_id = "code"; }
+            #{ window_class = "Code"; }
+            { class = "Code"; }
           ];
           "number 4" = [
             { class = "steam"; }

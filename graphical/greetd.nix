@@ -10,6 +10,7 @@ let
     export QT_QPA_PLATFORM=wayland
     export SDL_VIDEODRIVER=wayland
     export _JAVA_AWT_WM_NONREPARENTING=1
+    export NIXOS_OZONE_WL=1
 
     systemd-run --user --scope --collect --quiet --unit=sway systemd-cat --identifier=sway ${pkgs.sway}/bin/sway $@
   '';

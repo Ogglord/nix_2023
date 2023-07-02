@@ -9,16 +9,21 @@ You can find the configurations from other people in the [nixos.wiki](https://ni
 
 ## Usage
 
+A `host` is built using one reference, if the hostType is nixos then this includes setting up the home-manager configuration as well.
 ```bash
-sudo nixos-rebuild build --flake '.#hostname'
+sudo nixos-rebuild build --flake '.#host'
 ```
 
+Hosts are defined as types of either `nixos`, `darwin` or `home-manager` (standalone). They are listed in `/nix/hosts.nix`
 
-```bash
-home-manager build --flake '.#username@hostname'
-```
+## Quick locations
 
-## Desktop setup
+System packages: [/core/default.nix](/core/default.nix)\
+User packages: [/users/[user]/core/default.nix](/users/ogge/core/default.nix)
+
+
+
+## Host: **Desktop**
  - wayland
  - sway
  - secureboot
