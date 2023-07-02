@@ -4,9 +4,7 @@ let
   term = "alacritty";
   #menu = "wofi --show run";
   menu = "rofi -show drun -disable-history";
-  #"${modifier}+d" = "exec rofi -show drun -disable-history";
-  #"${modifier}+Shift+d" = "exec rofi -show run -disable-history";
-  applyStylix = true;
+
 
 in
 {
@@ -14,50 +12,73 @@ in
   home.file.".local/bin/shutdownmenu.sh".source = ./static/shutdownmenu.sh;
   home.file.".local/bin/shutdownmenu.sh".executable = true;
   ## sworkstyle config - map applications to workspace icons in sway
-  home.file.".config/sworkstyle/config.toml".source = ./static/sworkstyle_config.toml;
+  #home.file.".config/sworkstyle/config.toml".source = ./static/sworkstyle_config.toml;
 
   wayland.windowManager.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
 
+    enable = true;
+    package = pkgs.swayfx;
+    wrapperFeatures.gtk = true;
+    extraConfigEarly = ''
+      rename $ws0 "0: General"
+      rename $ws1 "1: Shell"
+      rename $ws2 "2: Dev"
+      rename $ws3 "3: Web"
+      rename $ws4 "4: Music"
+      rename $ws5 "5: Mail"
+      rename $ws6 "6: Urgent"
+      rename $ws7 "7: Focused"
+      rename $ws8 "8"
+      rename $ws9 "9"
+      rename $ws10 "10"
+    '';
+    extraConfig = ''
+      shadows enable
+      corner_radius 5
+      set $ws0 "0: General"
+      set $ws1 "1: Shell"
+      set $ws2 "2: Dev"
+      set $ws3 "3: Web"
+      set $ws4 "4: Music"
+      set $ws5 "5: Mail"
+      set $ws6 "6: Urgent"
+      set $ws7 "7: Focused"
+      set $ws8 "8"
+      set $ws9 "9"
+      set $ws10 "10"
+      default_border pixel 4   
+      default_floating_border pixel 4
+      for_window [urgent="latest"] focus
+      focus_follows_mouse yes
+      focus_on_window_activation urgent
+
+    '';
     config =
       {
         modifier = "Mod4"; # windows key
         terminal = term;
-
         workspaceAutoBackAndForth = true;
-
-
+        defaultWorkspace = "workspace number 1";
         fonts.size = lib.mkForce 14.0;
+        focus.newWindow = "focus";
+        gaps = {
+          inner = 20;
+          smartGaps = false;
+        };
 
-        # fonts = {
-        #   names = [ "Ubuntu" ];
-        #   size = 12.0;
-        # };
         bars = [ ];
-        #  bars = [{
-        #    fonts.size = 14.0;
-        #  	position = "bottom";
-        #  	extraConfig = ''
-        #  	            separator_symbol "  "
-        #  	            wrap_scroll no
-        #  	          '';
-        #  }];	
         input = {
           "*" = {
             xkb_layout = "se";
-            #          xkb_options = "";
           };
         };
-        gaps = {
-          inner = 20;
-          smartGaps = true;
-        };
-
         output = {
           DP-2 = {
+            mode = "2560x1440@240Hz";
+            pos = "0 0";
             scale = "1";
             adaptive_sync = "on";
+            dpms = "on";
           };
         };
 
@@ -126,7 +147,7 @@ in
           };
         };
 
-        focus.newWindow = "smart";
+
 
         floating.criteria = [
           {
@@ -188,23 +209,23 @@ in
         ];
         startup = [
           # FYI: exec is implied here, for each command
-          {
-            command = "mako";
-          }
-          {
-            command = "sworkstyle & > /tmp/sworkstyle.log";
-          }
+          # {
+          #   command = "mako";
+          # }
+          # {
+          #   command = "sworkstyle & > /tmp/sworkstyle.log";
+          # }
 
 
-          {
-            command = "systemctl --user reload-or-restart waybar ";
-            always = true;
-          }
+          # {
+          #   command = "systemctl --user reload-or-restart waybar ";
+          #   always = true;
+          # }
 
-          {
-            command = "systemctl --user reload-or-restart kanshi ";
-            always = true;
-          }
+          # {
+          #   command = "systemctl --user reload-or-restart kanshi ";
+          #   always = true;
+          # }
 
           {
             command = "brave";
@@ -225,24 +246,24 @@ in
           {
             command = "code";
           }
-          { command = "psst"; }
+          # { command = "psst"; }
           {
             command = ''--no-startup-id
                   {
-                    swaymsg "workspace number 1; exec ${term};"
+                    swaymsg "workspace $ws1; exec ${term};"
                   }
                 ''
             ;
           }
-          {
-            command = ''--no-startup-id
-                  {
-                    systemctl --user restart waybar
-                  }
-                ''
-            ;
-            always = true;
-          }
+          #{
+          #   command = ''--no-startup-id
+          #         {
+          #           systemctl --user restart waybar
+          #         }
+          #       ''
+          #   ;
+          #   always = true;
+          # }
 
 
         ];
@@ -263,5 +284,35 @@ in
         };
 
       };
+
+    swaynag.enable = true;
+    swaynag.settings = {
+      "<config>" = {
+        edge = "top";
+        layer = "overlay";
+        font = "IBM Plex Sans 12";
+        button-padding = 6;
+        button-gap = 10;
+        button-margin-right = 4;
+        button-dismiss-gap = 6;
+        details-border-size = 2;
+        button-border-size = 0;
+        border-bottom-size = 2;
+
+      };
+
+      error = {
+        background = "960019";
+        text = "FFFFFF";
+        button-background = "31363b";
+        message-padding = 10;
+      };
+      warning = {
+        background = "d6b85a";
+        text = "000000";
+        button-background = "ffffff";
+        message-padding = 10;
+      };
+    };
   };
 }

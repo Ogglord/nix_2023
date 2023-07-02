@@ -21,8 +21,8 @@ in
       slurp ## select part of screen (works with grim)
       swaybg ## change wallpaper
       swayidle
-      sworkstyle
-      sworkstyle-pkg
+      #sworkstyle
+      #sworkstyle-pkg
       wl-clipboard
       #wl-gammactl
       xwayland

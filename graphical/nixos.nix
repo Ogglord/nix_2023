@@ -1,8 +1,8 @@
 { pkgs, ... }: {
 
   imports = [
-    ./greetd.nix
-    ./sway.nix
+#    ./greetd.nix
+    # ./sway.nix
 
   ];
 

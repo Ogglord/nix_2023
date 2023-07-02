@@ -1,5 +1,6 @@
-{ ... }:
+{ pkgs, ... }:
 {
+  home.packages = [ pkgs.xdg-user-dirs ];
   xdg =
     let
       homePath = /home/ogge;

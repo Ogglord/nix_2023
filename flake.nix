@@ -70,10 +70,10 @@
 
     #rofi-themes2-src.url = "github:newmanls/rofi-themes-collection/master";
     #rofi-themes2-src.flake = false;
-    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+    #nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
 
     # only needed if you use as a package set:
-    nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
+    #nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
     #flake-compat = {
     #  url = "github:edolstra/flake-compat";
     #  flake = false;

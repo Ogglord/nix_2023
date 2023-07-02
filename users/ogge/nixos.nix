@@ -35,14 +35,17 @@ with lib;
 
   programs._1password-gui.polkitPolicyOwners = [ "ogge" ];
 
+  
   home-manager.users.ogge = {
-    imports = optionals config.programs.sway.enable [
+    imports =
+    # optionals config.programs.sway.enable [
+    [ 
       ./graphical
-      ./graphical/sway
-    ] ++ optionals config.services.xserver.windowManager.i3.enable [
-      ./graphical
-      ./graphical/i3
-    ] ++ [
+      ./graphical/sway      
+    #] ++ optionals config.services.xserver.windowManager.i3.enable [
+    #  ./graphical
+    #  ./graphical/i3
+    #] ++ [
       ./xdg.nix
     ];
   };
