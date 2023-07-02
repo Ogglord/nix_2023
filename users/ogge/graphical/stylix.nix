@@ -3,8 +3,8 @@ let
   schemes = pkgs.fetchFromGitHub {
     owner = "tinted-theming";
     repo = "base16-schemes";
-    rev = "cf6bc892a24af19e11383adedc6ce7901f133ea7";
-    sha256 = "sha256-U9pfie3qABp5sTr3M9ga/jX8C807FeiXlmEZnC4ZM58=";
+    rev = "9a4002f78dd1094c123169da243680b2fda3fe69";
+    sha256 = "sha256-AngNF++RZQB0l4M8pRgcv66pAcIPY+cCwmUOd+RBJKA=";
   };
 in
 {
@@ -78,7 +78,10 @@ in
         popups = lib.mkForce 15;
       };
     };
-    base16Scheme = "${schemes}/monokai.yaml";
+    # heetch
+    # gruvbox-material-light-hard
+    # https://tinted-theming.github.io/base16-gallery/
+    base16Scheme = "${schemes}/catppuccin-frappe.yaml";
     polarity = "dark";
     opacity = {
       terminal = 0.90;
@@ -88,7 +91,7 @@ in
     };
     targets = {
       waybar.enable = lib.mkForce false;
-      sway.enable = lib.mkForce false;
+      sway.enable = lib.mkForce true;
     };
   };
 }

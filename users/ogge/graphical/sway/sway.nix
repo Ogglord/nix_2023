@@ -60,7 +60,7 @@ in
         modifier = "Mod4"; # windows key
         terminal = term;
         workspaceAutoBackAndForth = true;
-        defaultWorkspace = "workspace number 1";
+        defaultWorkspace = "workspace $ws1";
         fonts.size = lib.mkForce 14.0;
         focus.newWindow = "focus";
         gaps = {
@@ -83,6 +83,19 @@ in
             dpms = "on";
           };
         };
+
+        startup = [
+          {
+            command = "brave";
+          }
+          {
+            command = "code";
+          }
+          { command = "psst"; }
+          {
+            command = "exec ${term} --class Alacritty_default";
+          }
+        ];
 
         keybindings =
           let
@@ -116,40 +129,28 @@ in
             "${mod}+Up" = "focus up";
             "${mod}+Right" = "focus right";
 
-            "${mod}+1" = "workspace number 1";
-            "${mod}+2" = "workspace number 2";
-            "${mod}+3" = "workspace number 3";
-            "${mod}+4" = "workspace number 4";
-            "${mod}+5" = "workspace number 5";
-            "${mod}+6" = "workspace number 6";
-            "${mod}+7" = "workspace number 7";
-            "${mod}+8" = "workspace number 8";
-            "${mod}+9" = "workspace number 9";
-            "${mod}+0" = "workspace number 10";
+            "${mod}+1" = "workspace $ws1";
+            "${mod}+2" = "workspace $ws2";
+            "${mod}+3" = "workspace $ws3";
+            "${mod}+4" = "workspace $ws4";
+            "${mod}+5" = "workspace $ws5";
+            "${mod}+6" = "workspace $ws6";
+            "${mod}+7" = "workspace $ws7";
+            "${mod}+8" = "workspace $ws8";
+            "${mod}+9" = "workspace $ws9";
+            "${mod}+0" = "workspace $ws0";
 
-            "${mod}+Shift+1" = "move container to workspace number 1";
-            "${mod}+Shift+2" = "move container to workspace number 2";
-            "${mod}+Shift+3" = "move container to workspace number 3";
-            "${mod}+Shift+4" = "move container to workspace number 4";
-            "${mod}+Shift+5" = "move container to workspace number 5";
-            "${mod}+Shift+6" = "move container to workspace number 6";
-            "${mod}+Shift+7" = "move container to workspace number 7";
-            "${mod}+Shift+8" = "move container to workspace number 8";
-            "${mod}+Shift+9" = "move container to workspace number 9";
-            "${mod}+Shift+0" = "move container to workspace number 10";
+            "${mod}+Shift+1" = "move container to workspace $ws1";
+            "${mod}+Shift+2" = "move container to workspace $ws2";
+            "${mod}+Shift+3" = "move container to workspace $ws3";
+            "${mod}+Shift+4" = "move container to workspace $ws4";
+            "${mod}+Shift+5" = "move container to workspace $ws5";
+            "${mod}+Shift+6" = "move container to workspace $ws6";
+            "${mod}+Shift+7" = "move container to workspace $ws7";
+            "${mod}+Shift+8" = "move container to workspace $ws8";
+            "${mod}+Shift+9" = "move container to workspace $ws9";
+            "${mod}+Shift+0" = "move container to workspace $ws10";
           };
-
-        modes = {
-          "system:  [r]eboot  [p]oweroff  [l]ogout" = {
-            r = "exec reboot";
-            p = "exec poweroff";
-            l = "exit";
-            Return = "mode default";
-            Escape = "mode default";
-          };
-        };
-
-
 
         floating.criteria = [
           {
@@ -204,20 +205,7 @@ in
           }
 
         ];
-        startup = [
 
-          {
-            command = "brave";
-          }
-          {
-            command = "code";
-          }
-          { command = "psst"; }
-          {
-            command = "exec ${term} --class Alacritty_default";
-          }
-
-        ];
         # set $ws0 "0: General"
         # set $ws1 "1: Shell"
         # set $ws2 "2: Dev"
