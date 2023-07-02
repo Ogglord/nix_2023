@@ -6,5 +6,6 @@
       else throw "Unknown hostType '${hostType}' for graphical"
     )
     ./fonts.nix
+    ./trusted.nix
   ];
 }

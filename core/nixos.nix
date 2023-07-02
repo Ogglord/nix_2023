@@ -36,8 +36,10 @@
       allowedUDPPorts = [ config.services.tailscale.port ];
     };
     useDHCP = false;
-    useNetworkd = true;
+    useNetworkd = false;
     wireguard.enable = true;
+    nameservers = [ "100.100.100.100" "1.1.1.1" ];
+    search = [ "turkey-kelvin.ts.net" ];
   };
 
   programs = {
@@ -61,6 +63,7 @@
       settings.PermitRootLogin = lib.mkDefault "no";
     };
     tailscale.enable = true;
+    tailscale.useRoutingFeatures = "client";
     #fwupd.daemonSettings.EspLocation = config.boot.loader.efi.efiSysMountPoint;
   };
 

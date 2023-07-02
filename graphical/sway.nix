@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
-  ## this is enough to enable the configuration on user basis
+  ## disabled, since it doesnt work with swayfx + home-manager
   programs.sway = {
-    enable = true;
+    enable = false;
     package = pkgs.swayfx;
     extraPackages = with pkgs; [
 

@@ -11,13 +11,15 @@
 
         enable = true; ## own $XDG_CONFIG_HOME/user-dirs.dirs
         createDirectories = true;
-        desktop = "~";
-        download = "~/download";
-        documents = "~";
-        music = "~";
-        pictures = "~/pictures";
-        publicShare = "~";
-        templates = "~";
+        download = builtins.toString (homePath + "/Downloads");
+        pictures = builtins.toString (homePath + "/Pictures");
+
+        desktop = builtins.toString homePath;
+        documents = builtins.toString homePath;
+        music = builtins.toString homePath;
+        publicShare = builtins.toString homePath;
+        templates = builtins.toString homePath;
+        videos = builtins.toString homePath;
       };
       cacheHome = homePath + "/.cache";
       configHome = homePath + "/.config";

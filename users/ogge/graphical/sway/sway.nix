@@ -207,10 +207,19 @@ in
             command = "inhibit_idle fullscreen";
             criteria.app_id = "mpv";
           }
-          ## no border for brave, buggy
+          ## image viewer
+          {
+            command = "floating enable;border none";
+            criteria.app_id = "imv";
+          }
           {
             command = "border none";
             criteria.app_id = "brave-browser";
+          }
+
+          {
+            command = "border none";
+            criteria.class = "steam";
           }
 
         ];
