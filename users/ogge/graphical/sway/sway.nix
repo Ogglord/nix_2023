@@ -20,32 +20,34 @@ in
     package = pkgs.swayfx;
     wrapperFeatures.gtk = true;
     extraConfigEarly = ''
-      rename $ws0 "0: General"
-      rename $ws1 "1: Shell"
-      rename $ws2 "2: Dev"
-      rename $ws3 "3: Web"
-      rename $ws4 "4: Music"
-      rename $ws5 "5: Mail"
-      rename $ws6 "6: Urgent"
-      rename $ws7 "7: Focused"
-      rename $ws8 "8"
-      rename $ws9 "9"
-      rename $ws10 "10"
-    '';
-    extraConfig = ''
-      shadows enable
-      corner_radius 5
+      #xwayland disable
+      exec swaymsg rename workspace 0 to "0: General"
+      exec swaymsg rename workspace 1 to "1: Shell"
+      exec swaymsg rename workspace 2 to "2: Dev"
+      exec swaymsg rename workspace 3 to "3: Web"
+      exec swaymsg rename workspace 4 to "4: Music"
+      exec swaymsg rename workspace 5 to "5: Steam"
+      exec swaymsg rename workspace 6 to "6: Urgent"
+      exec swaymsg rename workspace 7 to "7: Focused"
+      exec swaymsg rename workspace 8 to "8"
+      exec swaymsg rename workspace 9 to "9"
+      exec swaymsg rename workspace 10 to "10"
       set $ws0 "0: General"
       set $ws1 "1: Shell"
       set $ws2 "2: Dev"
       set $ws3 "3: Web"
       set $ws4 "4: Music"
-      set $ws5 "5: Mail"
+      set $ws5 "5: Steam"
       set $ws6 "6: Urgent"
       set $ws7 "7: Focused"
       set $ws8 "8"
       set $ws9 "9"
       set $ws10 "10"
+    '';
+    extraConfig = ''
+      shadows enable
+      corner_radius 5
+     
       default_border pixel 4   
       default_floating_border pixel 4
       for_window [urgent="latest"] focus
@@ -189,98 +191,56 @@ in
         window.commands = [
           {
             command = "inhibit_idle fullscreen";
-            criteria.app_id = "brave-browser ";
+            criteria.app_id = "brave-browser";
           }
           {
             command = "inhibit_idle fullscreen";
-            criteria.app_id = "mpv ";
+            criteria.app_id = "mpv";
           }
+          ## no border for brave, buggy
           {
-            command = "inhibit_idle fullscreen";
-            criteria.class = "Spotify ";
+            command = "border none";
+            criteria.app_id = "brave-browser";
           }
-          {
-            # spotify doesn't set its WM_CLASS until it has mapped, so the assign is not reliable
-            command = "move to workspace 10";
-            criteria.class = "Spotify";
-          }
-          # {
-          #   command = "
+
         ];
         startup = [
-          # FYI: exec is implied here, for each command
-          # {
-          #   command = "mako";
-          # }
-          # {
-          #   command = "sworkstyle & > /tmp/sworkstyle.log";
-          # }
-
-
-          # {
-          #   command = "systemctl --user reload-or-restart waybar ";
-          #   always = true;
-          # }
-
-          # {
-          #   command = "systemctl --user reload-or-restart kanshi ";
-          #   always = true;
-          # }
 
           {
             command = "brave";
           }
-
-          #{
-          #  command =
-          #    let lockCmd = "
-          #swaylock - f - i \"\$(${wallpaper}/bin/wallpaper get)\"'";
-          #    in
-          #    ''swayidle -w \
-          #    timeout 600 ${lockCmd} \
-          #    timeout 1200 'swaymsg "output * dpms off"' \
-          #    resume 'swaymsg "output * dpms on"' \
-          #    before-sleep ${lockCmd}
-          #'';
-          #  }
           {
             command = "code";
           }
-          # { command = "psst"; }
+          { command = "psst"; }
           {
-            command = ''--no-startup-id
-                  {
-                    swaymsg "workspace $ws1; exec ${term};"
-                  }
-                ''
-            ;
+            command = "exec ${term} --class Alacritty_default";
           }
-          #{
-          #   command = ''--no-startup-id
-          #         {
-          #           systemctl --user restart waybar
-          #         }
-          #       ''
-          #   ;
-          #   always = true;
-          # }
-
 
         ];
-
+        # set $ws0 "0: General"
+        # set $ws1 "1: Shell"
+        # set $ws2 "2: Dev"
+        # set $ws3 "3: Web"
+        # set $ws4 "4: Music"
+        # set $ws5 "5: Steam"
+        # set $ws6 "6: Urgent"
+        # set $ws7 "7: Focused"
         assigns = {
-          "number 2" = [{ app_id = "brave-browser"; }];
-          "number 3" = [
+
+          "$ws1" = [{ app_id = "Alacritty_default"; }];
+
+          "$ws2" = [
             { app_id = "code"; }
-            #{ window_class = "Code"; }
             { class = "Code"; }
           ];
-          "number 4" = [
+          "$ws3" = [{ app_id = "brave-browser"; }];
+          "$ws5" = [
             { class = "steam"; }
             { app_id = "Steam"; }
             { title = "Steam"; }
           ];
-          "number 10" = [{ app_id = "psst-gui"; }];
+          "$ws4" = [{ app_id = "psst-gui"; }];
         };
 
       };

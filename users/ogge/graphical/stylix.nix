@@ -87,8 +87,8 @@ in
       desktop = 0.90;
     };
     targets = {
-      waybar.enableLeftBackColors = true;
-      waybar.enableRightBackColors = true;
+      waybar.enable = lib.mkForce false;
+      sway.enable = lib.mkForce false;
     };
   };
 }
