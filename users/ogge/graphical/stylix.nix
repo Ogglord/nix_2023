@@ -80,8 +80,10 @@ in
     };
     # heetch
     # gruvbox-material-light-hard
+    # catppuccin-frappe.yaml
+    # primer-dark-dimmed
     # https://tinted-theming.github.io/base16-gallery/
-    base16Scheme = "${schemes}/catppuccin-frappe.yaml";
+    base16Scheme = "${schemes}/solarized-dark.yaml";
     polarity = "dark";
     opacity = {
       terminal = 0.90;
@@ -91,7 +93,9 @@ in
     };
     targets = {
       waybar.enable = lib.mkForce false;
+      vscode.enable = lib.mkForce false;
       sway.enable = lib.mkForce true;
     };
   };
 }
+ 

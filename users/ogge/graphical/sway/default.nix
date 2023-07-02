@@ -25,7 +25,7 @@ in
       #sworkstyle-pkg
       wl-clipboard
       #wl-gammactl
-      xwayland
+      #xwayland
     ];
   };
 

@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 {
-  
+
   programs.zsh = {
     enable = true;
 
@@ -87,7 +87,7 @@
       sys = "nix-switch system";
       reload = ''(source ~/.zshrc ; echo "Reloading zsh config"...)'';
       exa = "exa --group-directories-first --color-scale -g";
-      ls = "exa";
+      ls = "exa -l";
       ll = "exa -alh";
       l = "exa -lh";
       lt = "exa -laTh";

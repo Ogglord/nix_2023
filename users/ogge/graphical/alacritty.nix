@@ -1,9 +1,10 @@
 { pkgs, lib, config, ... }:
 with lib; {
 
-# stylix.alacritty.enable = true;
-  
-  programs.alacritty =  { ##optionals config.programs.alacritty.enable
+  # stylix.alacritty.enable = true;
+
+  programs.alacritty = {
+    ##optionals config.programs.alacritty.enable
     settings = {
       #color_schemes = import ./alacritty_colorschemes { };
 
@@ -107,8 +108,8 @@ with lib; {
       #};
       font = {
         #normal = {
-          #family = "Iosevka Nerd Font Mono";
-          #style = "Regular";
+        #family = "Iosevka Nerd Font Mono";
+        #style = "Regular";
         #};
         size = lib.mkForce 11.0;
       };

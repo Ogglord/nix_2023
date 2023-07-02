@@ -2,16 +2,20 @@
     border: none;
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: IBM Plex Sans, Ubuntu, Hack Nerd Font;
+    font-family: Hack Nerd Font, IBM Plex Sans, Ubuntu;
     font-size: 15px;
     min-height: 0;
+    padding: 1px;
+    margin-top: 1px;
     /*color: rgb(220, 220, 220);*/
 }
 
 window#waybar {
-    background-color: #122c4f;
+    /*#background-color: #122c4f;*/
+    background: transparent;
+    color: white;
     /*border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
-    color: #ffffff;
+    /*color: #ffffff;*/
     transition-property: background-color;
     transition-duration: 0.5s;
     /*border-radius: 9px;*/

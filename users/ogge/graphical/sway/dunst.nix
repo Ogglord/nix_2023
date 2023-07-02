@@ -5,7 +5,7 @@
 
   services.dunst = {
     enable = true;
-    #settings.global.transparency = lib.mkForce 20;
+    settings.global.timeout = lib.mkForce 5;
     #settings.global.origin = lib.mkForce "top-right";
     # settings = lib.optionalAttrs false {
     #   global = {

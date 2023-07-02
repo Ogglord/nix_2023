@@ -45,14 +45,19 @@ in
       set $ws10 "10"
     '';
     extraConfig = ''
-      shadows enable
-      corner_radius 5
-     
-      default_border pixel 4   
+      default_border pixel 3   
       default_floating_border pixel 4
       for_window [urgent="latest"] focus
       focus_follows_mouse yes
       focus_on_window_activation urgent
+
+      ## swayfx
+      shadows enable
+      corner_radius 6
+      blur enable
+      blur_xray disable
+      layer_effects "waybar" blur enable; shadows enable; corner_radius 6
+   
 
     '';
     config =
@@ -94,6 +99,10 @@ in
           { command = "psst"; }
           {
             command = "exec ${term} --class Alacritty_default";
+          }
+          {
+            command = "systemctl --user reload-or-restart waybar";
+            always = true;
           }
         ];
 

@@ -28,7 +28,7 @@ in
     userSettings = {
       "editor.formatOnSave" = true;
       "window.zoomLevel" = 1;
-      #"workbench.colorTheme" = "Dracula";
+      "workbench.colorTheme" = "Dracula";
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil";
       "nix.serverSettings" = {

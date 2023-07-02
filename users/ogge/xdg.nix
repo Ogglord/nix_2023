@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = [ pkgs.xdg-user-dirs ];
+  home.packages = [ pkgs.xdg-user-dirs pkgs.mimeo ];
   xdg =
     let
       homePath = /home/ogge;
@@ -25,7 +25,7 @@
       stateHome = homePath + "/.local/state";
 
       mime.enable = true;
-      mimeApps.enable = false; # handles manually in 
+      mimeApps.enable = true; # handles manually in 
 
       ## Desktop Entries allow applications to be shown in your desktop environment's app launcher.
       desktopEntries = {
@@ -45,9 +45,15 @@
           categories = [ "Utility" ];
           mimeType = [ "text/x-shellscript" ];
         };
+      };
 
+      ## sane defaults
+      mimeApps.defaultApplications = {
+        "x-scheme-handler/http" = "brave-browser.desktop";
+        "x-scheme-handler/https" = "brave-browser.desktop";
 
       };
+
 
 
 
