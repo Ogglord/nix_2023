@@ -38,7 +38,7 @@
     useDHCP = false;
     useNetworkd = false;
     wireguard.enable = true;
-    nameservers = [ "100.100.100.100" "1.1.1.1" ];
+    nameservers = lib.mkDefault [ "100.100.100.100" "1.1.1.1" ];
     search = [ "turkey-kelvin.ts.net" ];
   };
 

@@ -56,19 +56,35 @@
     hostName = "batu";
     ## configure network
     firewall.enable = false;
-    interfaces.eth0.ipv4.addresses = [{
-      address = "194.87.149.71";
-      prefixLength = 26;
-    }];
-    defaultGateway = "194.87.149.65";
-    nameservers = [ "127.0.0.53" ];
-
+    interfaces.eth0 =
+      {
+        name = "eth0";
+        ipv4.addresses = [{
+          address = "194.87.149.71";
+          prefixLength = 26;
+        }];
+        ipv4.routes = [
+          {
+            address = "194.87.149.65";
+            prefixLength = 16;
+          }
+        ];
+      };
+    defaultGateway =
+      {
+        address = "194.87.149.65";
+        interface = "eth0";
+      };
+    nameservers = lib.mkForce [ "127.0.0.53" ];
+    useNetworkd = lib.mkForce true;
+    localCommands = "echo networking done...";
+    ## sudo ip route add default via 194.87.149.65 dev eth0
   };
 
   services.resolved = {
     # enable dns server          
     enable = true;
-    fallbackDns = [ "1.1.1.1" "8.8.8.8" ];
+    fallbackDns = [ "100.100.100.100" "1.1.1.1" ];
   };
   ## enable SSH Daemon
   services.sshd.enable = true;
