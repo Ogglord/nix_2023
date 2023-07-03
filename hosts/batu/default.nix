@@ -76,17 +76,17 @@
         interface = "eth0";
         via = "194.87.149.65";
       };
-    nameservers = lib.mkForce [ "127.0.0.53" ];
+    nameservers = lib.mkForce [ "1.1.1.1" "8.8.8.8" ];
     #useNetworkd = lib.mkForce true;
     localCommands = "echo networking done...";
     ## sudo ip route add default via 194.87.149.65 dev eth0
   };
 
-  services.resolved = {
-    # enable dns server          
-    enable = true;
-    fallbackDns = [ "100.100.100.100" "1.1.1.1" ];
-  };
+  #services.resolved = {
+  #  # enable dns server          
+  #  enable = true;
+  #  fallbackDns = [ "1.1.1.1" "100.100.100.100" ];
+  #};
   ## enable SSH Daemon
   services.sshd.enable = true;
   services.openssh.settings.PermitRootLogin = "no";
