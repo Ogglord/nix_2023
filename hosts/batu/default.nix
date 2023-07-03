@@ -76,7 +76,7 @@
         interface = "eth0";
       };
     nameservers = lib.mkForce [ "127.0.0.53" ];
-    useNetworkd = lib.mkForce true;
+    #useNetworkd = lib.mkForce true;
     localCommands = "echo networking done...";
     ## sudo ip route add default via 194.87.149.65 dev eth0
   };
