@@ -72,8 +72,9 @@
       };
     defaultGateway =
       {
-        address = "194.87.149.65";
+        address = "default";
         interface = "eth0";
+        via = "194.87.149.65";
       };
     nameservers = lib.mkForce [ "127.0.0.53" ];
     #useNetworkd = lib.mkForce true;
