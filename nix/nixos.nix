@@ -15,7 +15,7 @@
 let
   inherit (nixpkgs) lib;
 
-  genConfiguration = hostname: { address, hostPlatform, type, bootType, ... }:
+  genConfiguration = hostname: { address, hostPlatform, type, bootType, pubkey, ... }:
     lib.nixosSystem {
       modules = [
         (../hosts + "/${hostname}")
@@ -27,6 +27,7 @@ let
         hostAddress = address;
         hostType = type;
         bootType = bootType;
+        pubkey = pubkey;
         inherit agenix home-manager lanzaboote nix-index-database nixos-hardware nix-ld stylix nix-gaming sworkstyle nix-vscode-extensions; /* nix-ld catppuccin nix-index-database stylix impermanence*/
       };
     };

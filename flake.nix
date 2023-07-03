@@ -78,15 +78,7 @@
     #  url = "github:edolstra/flake-compat";
     #  flake = false;
     #};
-    #catppuccin.url = "github:Stonks3141/ctp-nix";
-    #catppuccin.inputs.nixpkgs.follows = "nixpkgs";
-    #catppuccin.inputs.flake-compat.follows = "flake-compat";
-    # XXX: https://github.com/NixOS/nix/pull/8047
-    #nix = {
-    #  url = "github:lovesegfault/nix/always-allow-substitutes-backport";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #  inputs.flake-compat.follows = "flake-compat";
-    #};
+
     ## themes for lots of apps
     stylix.url = "github:danth/stylix";
     ## dynamic linker (requires impure, for vscode remote host)

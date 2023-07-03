@@ -23,7 +23,8 @@
     systemPackages = with pkgs; [
       #man-pages
       #neovim
-      #rsync
+      rsync
+      git
       tree
       ncdu
       neofetch
