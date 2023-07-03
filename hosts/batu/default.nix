@@ -63,22 +63,23 @@
           address = "194.87.149.71";
           prefixLength = 26;
         }];
-        ipv4.routes = [
-          {
-            address = "194.87.149.65";
-            prefixLength = 16;
-          }
-        ];
+        # ipv4.routes = [
+        #   {
+        #     address = "default";
+        #     prefixLength = 0;
+        #     via = "194.87.149.65";
+        #   }
+        # ];
       };
     defaultGateway =
       {
         address = "default";
         interface = "eth0";
-        via = "194.87.149.65";
+
       };
     nameservers = lib.mkForce [ "1.1.1.1" "8.8.8.8" ];
-    #useNetworkd = lib.mkForce true;
-    localCommands = "echo networking done...";
+    useNetworkd = lib.mkForce false;
+    localCommands = "ip route add default via 194.87.149.65 dev eth0";
     ## sudo ip route add default via 194.87.149.65 dev eth0
   };
 
