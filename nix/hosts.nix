@@ -19,7 +19,7 @@ let
       extraRoles = [ "seedbox" ];
     };
     macbook = {
-      type = "homeManager222";
+      type = "homeManager";
       hostPlatform = "aarch64-darwin";
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF4NsULMpfxxTtSlLrvyBcfEAuBXxFgNTrvd5QDjtXZd";
       homeDirectory = "/home/ogge";
@@ -68,24 +68,15 @@ let
     in
     removeEmptyAttrs (listToAttrs (map bootTypeHostGroup bootTypes));
 
-    genExtraRoles = hosts:
-    let
-      validRoles = [ "gaming" "seedbox" "headless" ];
-      validRolesGroup = name: {
-        inherit name;
-        value = filterAttrs (_: host: builtins.elem host.extraRole name) hosts;
-      };
-    in
-    removeEmptyAttrs (listToAttrs (map validRolesGroup validRoles));
-
+  
   genHostGroups = hosts:
     let
       all = hosts;
       systemGroups = genSystemGroups all;
       typeGroups = genTypeGroups all;
       bootTypeGroups = genBootTypeGroups all;
-      extraRoles = genExtraRoles all;
+     # extraRolesGroups = listToAttrs (genExtraRoles all);
     in
-    all // systemGroups // typeGroups // bootTypeGroups // { inherit all; };
+    all // systemGroups // typeGroups // bootTypeGroups // { inherit all; }; #extraRolesGroups // 
 in
 genHostGroups hosts
