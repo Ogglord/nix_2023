@@ -14,15 +14,17 @@ let
         # "armhf" = "armv6"; # not supported by nix?
       }."${stdenv.system}";
 
+      # url for pre-built binary 
       url = "https://github.com/autobrr/autobrr/releases/download/v${version}/autobrr_${version}_${supported_arch}.tar.gz";
 
+      # fetch and unzip
       src = fetchzip {
         url = url;
         sha256 = "sha256-Qh75rNXZNjNE1iYOEtvMiagQ1VT5PU9tlC/lsHm8OQg=";
         stripRoot = false;
       };
 
-
+      # copy to nix-store package output
       phases = [ "installPhase" "patchPhase" ];
       installPhase = ''    
       mkdir -p $out/bin
@@ -38,9 +40,9 @@ let
           With inspiration and ideas from tools like trackarr, autodl-irssi and flexget we built one tool that can do it all, and then some.
         '';
         homepage = "https://github.com/autobrr/autobrr";
-        changelog = "https://git.savannah.gnu.org/cgit/hello.git/plain/NEWS?h=v${version}";
+        changelog = "https://github.com/autobrr/autobrr/?tag=v${version}";
         license = licenses.gpl2;
-        maintainers = [ maintainers.eelco ];
+        maintainers = [ maintainers.ze0s ];
         platforms = platforms.x86_64;
       };
 
