@@ -1,5 +1,6 @@
 final: _:
 let
+  ## TODO: add systemd service and configfile attribute
   autobrr = { stdenv, fetchzip, lib }:
 
     stdenv.mkDerivation rec {
