@@ -3,18 +3,12 @@
 {
   imports = [
     ../../core
-    #../../seedbox/env.nix
+
     ../../hardware/batu.nix
-    # ../../hardware/nixos-aarch64-builder
-    # ../../hardware/bluetooth.nix
-    # ../../hardware/sound-pipewire.nix
 
     # ../../graphical
 
     ../../users/ogge
-
-    # ./sway.nix
-    # ./hyperpixel4.nix
   ];
 
   boot.loader.grub = lib.mkIf (bootType == "legacy") {

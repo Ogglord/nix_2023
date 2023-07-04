@@ -7,6 +7,7 @@ let
       bootType = "secureboot";
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF4NsULMpfxxTtSlLrvyBcfEAuBXxFgNTrvd5QDjtXZd";
       remoteBuild = false;
+      extraRoles = [ "gui" "gaming" ];
     };
     batu = {
       type = "nixos";
@@ -15,9 +16,10 @@ let
       bootType = "legacy";
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF4NsULMpfxxTtSlLrvyBcfEAuBXxFgNTrvd5QDjtXZd";
       remoteBuild = true;
+      extraRoles = [ "seedbox" ];
     };
     macbook = {
-      type = "homeManager";
+      type = "homeManager222";
       hostPlatform = "aarch64-darwin";
       pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF4NsULMpfxxTtSlLrvyBcfEAuBXxFgNTrvd5QDjtXZd";
       homeDirectory = "/home/ogge";
@@ -66,12 +68,23 @@ let
     in
     removeEmptyAttrs (listToAttrs (map bootTypeHostGroup bootTypes));
 
+    genExtraRoles = hosts:
+    let
+      validRoles = [ "gaming" "seedbox" "headless" ];
+      validRolesGroup = name: {
+        inherit name;
+        value = filterAttrs (_: host: builtins.elem host.extraRole name) hosts;
+      };
+    in
+    removeEmptyAttrs (listToAttrs (map validRolesGroup validRoles));
+
   genHostGroups = hosts:
     let
       all = hosts;
       systemGroups = genSystemGroups all;
       typeGroups = genTypeGroups all;
       bootTypeGroups = genBootTypeGroups all;
+      extraRoles = genExtraRoles all;
     in
     all // systemGroups // typeGroups // bootTypeGroups // { inherit all; };
 in
