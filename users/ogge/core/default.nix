@@ -34,6 +34,8 @@
       #bandwhich
       #colorcheck 
       rofi-themes2
+      autobrr
+      nix-index
       exa
       #fd
       #kalker
