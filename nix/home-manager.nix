@@ -11,8 +11,11 @@ let
 
   genModules = hostName: { homeDirectory, ... }:
     { config, pkgs, ... }: {
-      imports = [ (../hosts + "/${hostName}") ];
-
+      imports = [ 
+        ./trace.nix 
+      (../hosts + "/${hostName}") 
+      ];
+     
       home = {
         inherit homeDirectory;
         sessionVariables.NIX_PATH = lib.concatStringsSep ":" [
@@ -38,5 +41,4 @@ let
     };
 in
 lib.mapAttrs genConfiguration (self.hosts.homeManager or { })
-#lib.mapAttrs genConfiguration (self.hosts.homeManager)
 

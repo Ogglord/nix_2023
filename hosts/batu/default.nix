@@ -1,5 +1,4 @@
-{ config, lib, nixos-hardware, pkgs, bootType, ... }:
-#{ config, pkgs, lib, inputs, unstable, system, ... }:
+{ config, lib, nixos-hardware, pkgs, bootType, extraRoles, ... }:
 {
   imports = [
     ../../core
@@ -77,11 +76,6 @@
     ## sudo ip route add default via 194.87.149.65 dev eth0
   };
 
-  #services.resolved = {
-  #  # enable dns server          
-  #  enable = true;
-  #  fallbackDns = [ "1.1.1.1" "100.100.100.100" ];
-  #};
   ## enable SSH Daemon
   services.sshd.enable = true;
   services.openssh.settings.PermitRootLogin = "no";

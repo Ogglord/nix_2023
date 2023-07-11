@@ -1,11 +1,9 @@
 { self
 , darwin
 , home-manager
-  #, impermanence
 , nix-index-database
 , nixpkgs
 , stylix
-  #, templates
 , ...
 }:
 let
@@ -16,6 +14,7 @@ let
       system = hostPlatform;
       pkgs = self.pkgs.${hostPlatform};
       modules = [
+         ./trace.nix
         (../hosts + "/${hostname}")
         {
           nix.registry = {

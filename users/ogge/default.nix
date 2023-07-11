@@ -1,4 +1,4 @@
-{ config, hostType, lib, sworkstyle, nix-vscode-extensions, ... }:
+{ config, hostType, lib, sworkstyle, nix-vscode-extensions, extraRoles, ... }:
 if hostType == "nixos" || hostType == "darwin" then {
   imports = [
     (
@@ -10,7 +10,6 @@ if hostType == "nixos" || hostType == "darwin" then {
   home-manager.users.ogge = {
     imports = [
       ./core
-      #./dev
       ./modules
     ];
     home.username = config.users.users.ogge.name;
@@ -24,7 +23,6 @@ if hostType == "nixos" || hostType == "darwin" then {
 else if hostType == "homeManager" then {
   imports = [
     ./core
-    #./dev
     ./modules
   ];
   programs.home-manager.enable = true;
