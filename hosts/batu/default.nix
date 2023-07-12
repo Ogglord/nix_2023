@@ -1,12 +1,9 @@
 { config, lib, nixos-hardware, pkgs, bootType, extraRoles, ... }:
 {
   imports = [
+    ./networking.nix
     ../../core
-
     ../../hardware/batu.nix
-
-    # ../../graphical
-
     ../../users/ogge
   ];
 
@@ -43,38 +40,6 @@
     pkgs.git
     pkgs.bash
   ];
-
-  networking = {
-    usePredictableInterfaceNames = false;
-    hostName = "batu";
-    ## configure network
-    firewall.enable = false;
-    interfaces.eth0 =
-      {
-        name = "eth0";
-        ipv4.addresses = [{
-          address = "194.87.149.71";
-          prefixLength = 26;
-        }];
-        # ipv4.routes = [
-        #   {
-        #     address = "default";
-        #     prefixLength = 0;
-        #     via = "194.87.149.65";
-        #   }
-        # ];
-      };
-      defaultGateway =
-      {
-        address = "194.87.149.65";
-        interface = "eth0";
-
-      };
-    nameservers = lib.mkForce [ "1.1.1.1" "8.8.8.8" ];
-    useNetworkd = lib.mkForce false;
-    localCommands = "ip route flush 0/0; ip route add 194.87.149.65 dev eth0; ip route add default via 194.87.149.65 dev eth0";
-    ## sudo ip route add default via 194.87.149.65 dev eth0
-  };
 
   ## enable SSH Daemon
   services.sshd.enable = true;
