@@ -41,6 +41,12 @@
     pkgs.bash
   ];
 
+  ## enable autobrr
+  services.autobrr.enable = true;
+  services.autobrr.package = pkgs.autobrr;
+  services.autobrr.configFilePath = "/home/ogge/.config/autobrr/";
+  services.autobrr.systemd.enable = true;
+
   ## enable SSH Daemon
   services.sshd.enable = true;
   services.openssh.settings.PermitRootLogin = "no";

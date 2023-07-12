@@ -1,7 +1,7 @@
 { hostType, pkgs, stylix, ... }: {
   # impermanence, nix-index-database, stylix,
   imports = [
-   
+
     ./git.nix
     # ./htop.nix
     # ./neovim
@@ -23,7 +23,6 @@
       #bandwhich
       #colorcheck 
       rofi-themes2
-      autobrr
       nix-index
       exa
       #fd

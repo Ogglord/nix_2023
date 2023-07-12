@@ -1,49 +1,94 @@
-{ pkgs ? import <nixpkgs> { }, ... }:
+{ config, lib, pkgs, ... }:
+with lib;  # use the functions from lib, such as mkIf
 let
-  inherit (pkgs) stdenv lib;
+  # the values of the options set for the service by the user of the service
+  cfg = config.services.autobrr;
+  env =
+    {
+      VARIABLE = "VALUE";
+    };
 in
-## deps nodePackages.pnpm
-stdenv.mkDerivation rec {
-  pname = "autobrr";
-  version = "1.27.1";
+{
+  ##### interface. here we define the options that users of our service can specify
+  options = {
+    # the options for our service will be located under services.foo
+    services.autobrr = rec  {
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          Enable autobrr service.
+        '';
+      };
 
-  ## this will fail for unsupported platforms
-  supported_arch = {
-    "x86_64-linux" = "linux_x86_64";
-    "x86_64-darwin" = "darwin_x86_64";
-    # "arm64" = "arm64"; # not supported by nix?
-    # "armhf" = "armv6"; # not supported by nix?
-  }."${stdenv.system}";
+      package = mkOption {
+        type = types.path;
+        description = "The autobrr package.";
+      };
 
-  url = "https://github.com/autobrr/autobrr/releases/download/v${version}/autobrr_${version}_${supported_arch}.tar.gz";
+      configFile = mkOption {
+        type = types.path;
+        default = "/";
+        description = ''
+          The config file option for autobrr.
+        '';
+      };
 
-  src = pkgs.fetchzip {
-    url = url;
-    sha256 = "sha256-Qh75rNXZNjNE1iYOEtvMiagQ1VT5PU9tlC/lsHm8OQg=";
-    stripRoot = false;
+      configFilePath = mkOption {
+        type = types.str;
+        default = "/";
+        description = ''
+          The config file path option for autobrr.
+        '';
+      };
+
+      systemd.enable = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          Enable systemd service.
+        '';
+      };
+
+      runAsUser = mkOption {
+        type = types.str;
+        default = "root";
+        description = ''
+          user to run systemd service as.
+        '';
+      };
+      runAsGroup = mkOption {
+        type = types.str;
+        default = "root";
+        description = ''
+          group to run systemd service as.
+        '';
+      };
+    };
   };
 
+  ##### implementation
+  config = mkIf cfg.enable {
+    # only apply the following settings if enabled
+    # here all options that can be specified in configuration.nix may be used
+    # configure systemd services
+    # add system users
+    # write config files, just as an example here:
+    environment.systemPackages = [ cfg.package ];
 
-  phases = [ "installPhase" "patchPhase" ];
-  installPhase = ''    
-    mkdir -p $out/bin
-    cp -r $src/. $out/bin    
-    chmod +x $out/bin/autobrr
-    chmod +x $out/bin/autobrrctl    
-  '';
-
-  meta = with lib; {
-    description = "Dominate the seeding frenzy";
-    longDescription = ''
-      autobrr is the modern download automation tool for torrents and usenet.
-      With inspiration and ideas from tools like trackarr, autodl-irssi and flexget we built one tool that can do it all, and then some.
-    '';
-    homepage = "https://github.com/autobrr/autobrr";
-    changelog = "https://git.savannah.gnu.org/cgit/hello.git/plain/NEWS?h=v${version}";
-    license = licenses.gpl2;
-    maintainers = [ maintainers.eelco ];
-    platforms = platforms.x86_64;
+    systemd.services.autobrr = mkIf cfg.systemd.enable
+      {
+        wantedBy = [ "multi-user.target" ];
+        after = [ "network-online.target" ];
+        environment = env;
+        serviceConfig =
+          {
+            Type = "simple";
+            ExecStart = "@${cfg.package}/bin/autobrr --config=${cfg.configFilePath}";
+            User = "${cfg.runAsUser}";
+            Group = "${cfg.runAsGroup}";
+            Restart = "always";
+          };
+      };
   };
-
 }
-

@@ -11,11 +11,11 @@ let
 
   genModules = hostName: { homeDirectory, ... }:
     { config, pkgs, ... }: {
-      imports = [ 
-        ./trace.nix 
-      (../hosts + "/${hostName}") 
+      imports = [
+        ./trace.nix
+        (../hosts + "/${hostName}")
       ];
-     
+
       home = {
         inherit homeDirectory;
         sessionVariables.NIX_PATH = lib.concatStringsSep ":" [
@@ -36,7 +36,7 @@ let
       modules = [ (genModules hostName attrs) ];
       extraSpecialArgs = {
         hostType = type;
-        inherit nix-index-database stylix; #catppuccin; #impermanence nix-index-database stylix;
+        inherit nix-index-database stylix;
       };
     };
 in
