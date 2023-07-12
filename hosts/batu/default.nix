@@ -64,15 +64,15 @@
         #   }
         # ];
       };
-    defaultGateway =
+      defaultGateway =
       {
-        address = "default";
+        address = "194.87.149.65";
         interface = "eth0";
 
       };
     nameservers = lib.mkForce [ "1.1.1.1" "8.8.8.8" ];
     useNetworkd = lib.mkForce false;
-    localCommands = "ip route add default via 194.87.149.65 dev eth0";
+    localCommands = "ip route flush 0/0; ip route add 194.87.149.65 dev eth0; ip route add default via 194.87.149.65 dev eth0";
     ## sudo ip route add default via 194.87.149.65 dev eth0
   };
 
