@@ -5,12 +5,13 @@ in
 {
   services.sonarr = {
     enable = true;
-    openFirewall = true;
+    openFirewall = false;
   };
   services.radarr = {
     enable = true;
-    openFirewall = true;
+    openFirewall = false;
   };
+
   environment.systemPackages = with pkgs; [
     qbittorrent-nox
   ];
@@ -48,4 +49,7 @@ in
       TimeoutStopSec = 1800;
     };
   };
+
+  networking.firewall.allowedTCPPorts = [ 22560 ]; # set manually in qbittorrent
+  networking.firewall.allowedUDPPorts = [ 22560 ]; # set manually in qbittorrent
 }

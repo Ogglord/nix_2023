@@ -8,10 +8,7 @@ in
   boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = 1;
 
   ## legacy networking device names
-  networking = {
-    usePredictableInterfaceNames = false;
-    hostName = "batu";
-  };
+  networking.hostName = "batu";
 
   ## enable networkd, and trace it to stdout
   systemd.network.enable = builtins.trace description true;
