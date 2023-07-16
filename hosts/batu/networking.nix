@@ -1,14 +1,20 @@
 { config, pkgs, lib, ... }:
 let
-  message = "Enabling networkd for batu static IPv4 ...";
+  description = "Enabling systemd.network for batu (static IPv4) ...";
 in
 {
+  ## enable IP forwarding (for tailscale exit node)
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+  boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = 1;
+
+  ## legacy networking device names
   networking = {
     usePredictableInterfaceNames = false;
     hostName = "batu";
   };
-  ## I want this to show
-  systemd.network.enable = builtins.trace message true;
+
+  ## enable networkd, and trace it to stdout
+  systemd.network.enable = builtins.trace description true;
 
   systemd.network.networks."10-wan" = {
     # match the interface by name
@@ -32,5 +38,7 @@ in
     linkConfig.RequiredForOnline = "routable";
     linkConfig.ActivationPolicy = "always-up";
   };
+  ## this works, but requires at least one initial manual login.. this can be avoided by using a pre-defined key (non-expiring)
+  system.activationScripts.script.text = ''echo "Enabling tailscale exit node (${pkgs.tailscale}/bin/tailscale)...";${pkgs.tailscale}/bin/tailscale up --ssh --advertise-exit-node'';
 }
 

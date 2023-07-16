@@ -1,10 +1,10 @@
 { config, lib, pkgs, extraRoles, ... }:
 with lib;
 {
-  imports = []
-  ++ optionals (elem "gaming" extraRoles) [ ./graphical/steam.nix ];
- 
- 
+  imports = [ ]
+    ++ optionals (elem "gaming" extraRoles) [ ./graphical/steam.nix ];
+
+
   users.groups.ogge.gid = config.users.users.ogge.uid;
 
   users.users.ogge = {
@@ -38,12 +38,14 @@ with lib;
   home-manager.users.ogge = {
     imports =
       optionals (elem "gui" extraRoles)
-      [
-        ./graphical
-        ./graphical/sway
-        ./xdg.nix
-      ]
-       ++ optionals (elem "seedbox" extraRoles) 
-       [ ./graphical/code.nix ]; 
+        [
+          ./graphical
+          ./graphical/sway
+          ./xdg.nix
+        ]
+      ++ optionals (elem "seedbox" extraRoles)
+        [ ./graphical/code.nix ]
+      ++ optionals (elem "seedbox" extraRoles)
+        [ ./services/autobrr.nix ];
   };
 }

@@ -3,30 +3,14 @@
   imports = [
     agenix.nixosModules.age
     home-manager.nixosModules.home-manager
-    #impermanence.nixosModules.impermanence
-    #catppuccin.nixosModules.catppuccin
     stylix.nixosModules.stylix
     nix-ld.nixosModules.nix-ld
     nix-index-database.nixosModules.nix-index
-    #stylix.nixosModules.stylix
-    #./resolved.nix
-    #./tmux.nix
-    #./xdg.nix
-    ../packages
   ] ++ lib.optionals (bootType == "secureboot") [ lanzaboote.nixosModules.lanzaboote ];
 
-  # stylix.image = pkgs.fetchurl {
-  #   url = "https://www.pixelstalk.net/wp-content/uploads/2016/05/Epic-Anime-Awesome-Wallpapers.jpg";
-  #   sha256 = "enQo3wqhgf0FEPHj2coOCvo7DuZv+x5rL/WIo4qPI50=";
-  # };
   stylix.image = ./wallpaper2.jpg;
 
   boot.kernelParams = [ "log_buf_len=10M" ];
-
-  #   documentation = {
-  #     dev.enable = true;
-  #     man.generateCaches = true;
-  #   };
 
   i18n.defaultLocale = "en_US.UTF-8";
 
