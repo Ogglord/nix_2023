@@ -1,5 +1,4 @@
-{ pkgs, hostType, stylix, nix-gaming, sworkstyle, nix-vscode-extensions, ... }: {
-  # nix-index-database, stylix,
+{ pkgs, lib, hostType, stylix, nix-gaming, sworkstyle, nix-vscode-extensions, extraRoles, ... }: {
   imports = [
     (
       if hostType == "nixos" then ./nixos.nix
@@ -7,7 +6,7 @@
       else throw "Unknown hostType '${hostType}' for core"
     )
     #./nix.nix
-  ];
+  ] ++ lib.optionals (lib.elem "seedbox" extraRoles) [ ./services/dvr.nix ];
 
   #   documentation = {
   #     enable = true;
@@ -21,8 +20,6 @@
       "/share/zsh"
     ];
     systemPackages = with pkgs; [
-      #man-pages
-      #neovim
       rsync
       git
       tree
@@ -40,7 +37,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
-      inherit hostType stylix nix-gaming sworkstyle nix-vscode-extensions; # impermanence nix-index-database stylix
+      inherit hostType stylix nix-gaming sworkstyle nix-vscode-extensions;
     };
   };
 
